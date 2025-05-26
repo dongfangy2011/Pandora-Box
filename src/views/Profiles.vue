@@ -11,11 +11,6 @@ import {useWebStore} from "@/store/webStore";
 import {WS} from "@/util/ws";
 import {onBeforeRouteLeave} from "vue-router";
 
-const distanceFromTop = ref(195)
-const upFromTop = function (distance: number) {
-  distanceFromTop.value = distance
-}
-
 // i18n
 const {t} = useI18n();
 

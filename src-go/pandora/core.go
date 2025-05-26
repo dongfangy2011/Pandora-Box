@@ -22,7 +22,7 @@ func Release() {
 	cache.Close()
 }
 
-func StartCore(server string, isClient bool) (port int, secret string) {
+func StartCore(server string) (port int, secret string) {
 
 	route.Register(handlers.Profile)
 	route.Register(handlers.WebTest)
@@ -71,19 +71,10 @@ func StartCore(server string, isClient bool) (port int, secret string) {
 		}
 	}
 
-	// 定时更新订阅
-	if !isClient {
-		waitUrl := fmt.Sprintf("http://%s:%d/wait", host, port)
-		headers := map[string]string{
-			"Authorization": fmt.Sprintf("Bearer %s", secret),
-		}
-		_, _, _ = utils.SendGet(waitUrl, headers, "")
-
-		job.LogJob("px-server.log")
-		job.RefreshJob()
-		job.AliveJob("alive", server)
-	}
 	// 开启定时任务
+	job.LogJob("px-server.log")
+	job.RefreshJob()
+	job.AliveJob("alive", server)
 	go cron.Start()
 
 	return port, secret

@@ -47,7 +47,7 @@ func main() {
 	pandora.Init()
 
 	// 开启后端api
-	pandora.StartCore(*addr, false)
+	pandora.StartCore(*addr)
 
 	termSign := make(chan os.Signal, 1)
 	signal.Notify(termSign, syscall.SIGINT, syscall.SIGTERM)

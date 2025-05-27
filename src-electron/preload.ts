@@ -5,9 +5,15 @@ import os from 'os';
 
 // tray相关
 contextBridge.exposeInMainWorld('pxTray', {
-    on: (name, callback) => ipcRenderer.on('px_' + name, (_event, ...value: any[]) => callback(...value)),
-    emit: (name: string, ...value: any[]) => ipcRenderer.send('px_' + name, ...value)
-})
+    on: (name, callback) => {
+        const eventName = 'px_' + name;
+        // 移除旧监听器，确保只注册一次
+        ipcRenderer.removeAllListeners(eventName);
+        ipcRenderer.on(eventName, (_event, ...value) => callback(...value));
+    },
+    emit: (name, ...value) => ipcRenderer.send('px_' + name, ...value)
+});
+
 
 // 缓存接口
 contextBridge.exposeInMainWorld('pxStore', {

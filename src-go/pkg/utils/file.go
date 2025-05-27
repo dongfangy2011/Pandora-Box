@@ -24,12 +24,12 @@ func InitHomeDir(homeDir string) {
 // SetPermissions 设置权限允许所有用户读写
 func SetPermissions(filePath string) error {
 	if runtime.GOOS == "windows" {
-		// Windows: 使用 icacls 赋予所有用户读写权限
-		cmd := exec.Command("icacls", filePath, "/grant", "*S-1-1-0:(R,W)")
+		// Windows: 使用 icacls 赋予所有用户读写和删除权限
+		cmd := exec.Command("icacls", filePath, "/grant", "*S-1-1-0:(R,W,D)")
 		return cmd.Run()
 	} else {
-		// macOS & Linux: 赋予 0666 权限（所有用户可读写）
-		return os.Chmod(filePath, 0666)
+		// macOS & Linux: 赋予 0777 权限（所有用户可读取、写入和执行）
+		return os.Chmod(filePath, 0777)
 	}
 }
 

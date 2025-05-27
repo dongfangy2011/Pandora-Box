@@ -7,7 +7,6 @@ import (
 	sysProxy "github.com/snakem982/pandora-box/pkg/sys/proxy"
 	"io"
 	"os"
-	"path/filepath"
 	"runtime"
 	"strings"
 	"sync"
@@ -82,7 +81,7 @@ func startCore(profile models.Profile, reload bool) {
 	useTemplate, templateBuf := getTemplate(profile)
 
 	// 获取配置文件
-	providerBuf, err := os.ReadFile(filepath.Join(C.Path.HomeDir(), profile.Path))
+	providerBuf, err := os.ReadFile(utils.GetUserHomeDir(profile.Path))
 	if err != nil {
 		log.Warnln("Read config error: %s", err.Error())
 		return

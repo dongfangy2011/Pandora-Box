@@ -61,10 +61,12 @@ func SaveFile(savePath string, content []byte) (bool, error) {
 	}
 
 	// 创建保存路径的所有必要目录
-	err := os.MkdirAll(filepath.Dir(savePath), os.ModePerm)
+	fileDir := filepath.Dir(savePath)
+	err := os.MkdirAll(fileDir, os.ModePerm)
 	if err != nil {
 		return false, fmt.Errorf("创建目录失败: %v", err)
 	}
+	_ = SetPermissions(fileDir)
 
 	// 创建并保存文件
 	err = os.WriteFile(savePath, content, os.ModePerm)
@@ -95,11 +97,12 @@ func DeletePath(path string) error {
 // CreateFile 根据路径创建文件，如果文件存在直接返回
 func CreateFile(path string) (*os.File, error) {
 	// 确保目录存在
-	dir := filepath.Dir(path)
-	err := os.MkdirAll(dir, os.ModePerm)
+	fileDir := filepath.Dir(path)
+	err := os.MkdirAll(fileDir, os.ModePerm)
 	if err != nil {
 		return nil, err
 	}
+	_ = SetPermissions(fileDir)
 
 	// 检查文件是否存在
 	if _, err := os.Stat(path); err == nil {
@@ -122,11 +125,12 @@ func CreateFile(path string) (*os.File, error) {
 // CreateFileForAppend 以追加模式打开或创建文件，保证目录存在
 func CreateFileForAppend(path string) (*os.File, error) {
 	// 确保目录存在
-	dir := filepath.Dir(path)
-	err := os.MkdirAll(dir, os.ModePerm)
+	fileDir := filepath.Dir(path)
+	err := os.MkdirAll(fileDir, os.ModePerm)
 	if err != nil {
 		return nil, err
 	}
+	_ = SetPermissions(fileDir)
 
 	// 打开文件，使用追加模式
 	file, err := os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)

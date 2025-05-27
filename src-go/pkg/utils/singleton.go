@@ -15,7 +15,6 @@ func NotSingleton(name string) bool {
 	if err == nil && file != nil {
 		_ = file.Close()
 	}
-	_ = SetPermissions(lockFile)
 
 	fileLock = flock.New(lockFile)
 

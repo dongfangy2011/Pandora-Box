@@ -10,7 +10,7 @@ export const useSettingStore = defineStore('setting', {
         ipv6: false,
         dns: false,
         startup: false,
-        auth: true
+        auth: false
     }),
     actions: {
         setTestUrl(testUrl: any) {

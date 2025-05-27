@@ -68,11 +68,17 @@ export function startBackend(addr: string) {
             const setting = storeGet("setting")
             if (!!setting) {
                 const set = JSON.parse(setting as string);
-                if (set.hasOwnProperty("auth") && !set["auth"]) {
+                if (set.hasOwnProperty("auth") && set["auth"]) {
+                    log.info('开启了提权提示');
+                } else {
                     log.info('关闭了提权提示');
                     startNormally(backendPath, args);
                     return;
                 }
+            } else {
+                log.info('未发现setting，不使用提权');
+                startNormally(backendPath, args);
+                return;
             }
 
             // 只在 Windows 和 Linux 平台上弹出提权提示，macOS 也需要显示提权提示

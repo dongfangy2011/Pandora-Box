@@ -464,10 +464,10 @@ watch(() => proxiesStore.now, async () => {
 .proxy-nodes-card {
   width: calc(33% - 41px);
   max-width: 210px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--sub-card-border);
   border-radius: 8px;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--sub-card-bg);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

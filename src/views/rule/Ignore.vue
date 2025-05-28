@@ -87,7 +87,7 @@ async function savaIgnore() {
 .custom-textarea {
   background-color: transparent; /* 背景透明 */
   border: 2px solid var(--text-color); /* 边界为 2px 的白色 */
-  color: white; /* 文字颜色为白色 */
+  color: var(--text-color);
   padding: 8px; /* 内间距，确保内容不贴边 */
   border-radius: 8px; /* 圆角样式（可选） */
   font-size: 16px; /* 字体大小 */

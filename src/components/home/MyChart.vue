@@ -65,6 +65,7 @@ import {WS} from "@/util/ws";
 import {useWebStore} from "@/store/webStore";
 import {onBeforeRouteLeave} from "vue-router";
 import {prettyBytes} from "@/util/format";
+import {useMenuStore} from "@/store/menuStore";
 
 const webStore = useWebStore()
 
@@ -107,148 +108,85 @@ onBeforeUnmount(() => {
   wsMemory.close();
 })
 
-
-const spark1 = reactive({
-  chart: {
-    height: 90,
-    sparkline: {
-      enabled: true
-    },
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 2,
-      opacity: 0.5,
-    }
-  },
-  series: [{
-    data: [25, 66, 41, 59, 25, 44, 12, 36, 9, 21]
-  }],
-  stroke: {
-    curve: 'smooth'
-  },
-  markers: {
-    size: 0
-  },
-  grid: {
-    padding: {
-      top: 20,
-      bottom: 10,
-      left: 80
-    }
-  },
-  colors: ['#fff'],
-  tooltip: {
-    enabled: false,
-    theme: 'dark',
-    x: {
-      show: false
-    },
-    y: {
-      title: {
-        formatter: function formatter(val:any) {
-          return '';
-        }
+const getData = (arr: any[], color: string) => {
+  return {
+    chart: {
+      height: 90,
+      sparkline: {
+        enabled: true
       },
-
-    }
-  }
-})
-
-const spark2 = reactive({
-  chart: {
-    height: 90,
-    sparkline: {
-      enabled: true
+      dropShadow: {
+        enabled: true,
+        top: 1,
+        left: 1,
+        blur: 2,
+        opacity: 0.5,
+      }
     },
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 2,
-      opacity: 0.5,
-    }
-  },
-  series: [{
-    data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69]
-  }],
-  stroke: {
-    curve: 'smooth'
-  },
-  grid: {
-    padding: {
-      top: 20,
-      bottom: 10,
-      left: 80
-    }
-  },
-  markers: {
-    size: 0
-  },
-  colors: ['#fff'],
-  tooltip: {
-    enabled: false,
-    theme: 'dark',
-    x: {
-      show: false
+    series: [{
+      data: arr
+    }],
+    stroke: {
+      curve: 'smooth'
     },
-    y: {
-      title: {
-        formatter: function formatter(val:any) {
-          return '';
-        }
+    markers: {
+      size: 0
+    },
+    grid: {
+      padding: {
+        top: 20,
+        bottom: 10,
+        left: 80
+      }
+    },
+    colors: [color],
+    tooltip: {
+      enabled: false,
+      theme: 'dark',
+      x: {
+        show: false
+      },
+      y: {
+        title: {
+          formatter: function formatter(val: any) {
+            return '';
+          }
+        },
+
       }
     }
   }
+}
+
+const arr1 = [25, 66, 41, 59, 25, 44, 12, 36, 9, 21]
+const arr2 = [12, 14, 2, 47, 32, 44, 14, 55, 41, 69]
+const arr3 = [47, 45, 74, 32, 56, 31, 44, 33, 45, 19]
+
+let spark1 = ref(getData(arr1, "#fff"))
+let spark2 = ref(getData(arr2, "#fff"))
+let spark3 = ref(getData(arr3, "#fff"))
+
+const menuStore = useMenuStore()
+
+const changeColor = (useWhite: boolean) => {
+  if (useWhite) {
+    spark1.value = getData(arr1, "#fff")
+    spark2.value = getData(arr2, "#fff")
+    spark3.value = getData(arr3, "#fff")
+  } else {
+    spark1.value = getData(arr1, "#000")
+    spark2.value = getData(arr2, "#000")
+    spark3.value = getData(arr3, "#000")
+  }
+}
+
+onMounted(() => {
+  changeColor(menuStore.useWhite)
 })
 
-const spark3 = reactive({
-  chart: {
-    height: 90,
-    sparkline: {
-      enabled: true
-    },
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 2,
-      opacity: 0.5,
-    }
-  },
-  series: [{
-    data: [47, 45, 74, 32, 56, 31, 44, 33, 45, 19]
-  }],
-  stroke: {
-    curve: 'smooth'
-  },
-  markers: {
-    size: 0
-  },
-  grid: {
-    padding: {
-      top: 20,
-      bottom: 10,
-      left: 80
-    }
-  },
-  colors: ['#fff'],
-  tooltip: {
-    enabled: false,
-    theme: 'dark',
-    x: {
-      show: false
-    },
-    y: {
-      title: {
-        formatter: function formatter(val:any) {
-          return '';
-        }
-      }
-    }
-  }
-})
+
+// 监控黑白切换
+watch(() => menuStore.useWhite, changeColor);
 
 </script>
 
@@ -268,7 +206,7 @@ const spark3 = reactive({
 
 .spark .box .details {
   position: absolute;
-  color: #fff;
+  color: var(--text-color);
   transform: scale(0.8) translate(-15px, -16px);
 }
 

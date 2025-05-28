@@ -177,7 +177,7 @@ async function changeProxy(now: any, name: any) {
   padding: 10px 30px 10px 40px;
   border: none;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: var(--search-input-bg);
   color: var(--text-color);
   font-size: 12px;
   margin-left: -38px;

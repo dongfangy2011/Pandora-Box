@@ -12,6 +12,7 @@ export const useMenuStore = defineStore('menu', {
         language: 'zh',
         ruleMenu: 'Now',
         background: 'linear-gradient(to bottom, #434343, #000000)',
+        useWhite: true
     }),
     actions: {
         setMenu(menu: string) {
@@ -41,6 +42,9 @@ export const useMenuStore = defineStore('menu', {
         setBackground(background: string) {
             this.background = background;
         },
+        setUseWhite(useWhite: boolean) {
+            this.useWhite = useWhite;
+        }
     },
     persist: defaultPersist,
 });

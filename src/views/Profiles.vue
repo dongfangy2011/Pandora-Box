@@ -585,9 +585,9 @@ watch(() => webStore.dProfile, async (pList) => {
 
 .sub-title {
   margin-left: 10px;
-  color: #FFD700;
+  color: var(--top-hr-color);
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .profile-option {
@@ -612,10 +612,10 @@ watch(() => webStore.dProfile, async (pList) => {
 
 .sub-card {
   padding: 5px 8px 5px 5px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--sub-card-border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: var(--sub-card-bg);
+  color: var(--text-color);
   box-shadow: var(--left-nav-shadow);
 }
 
@@ -654,6 +654,7 @@ watch(() => webStore.dProfile, async (pList) => {
   text-align: left;
   font-size: 14px;
   padding: 5px 10px 2px 15px;
+  color: var(--text-color);
 }
 
 .bottom-row {
@@ -662,6 +663,7 @@ watch(() => webStore.dProfile, async (pList) => {
   gap: 8px;
   margin-top: 5px;
   margin-bottom: 2px;
+  color: var(--text-color);
 }
 
 

@@ -223,6 +223,7 @@ function checkUpdate() {
 
 :deep(.el-switch__core .el-switch__action) {
   margin-left: 2px;
+  background-color: var(--text-color);
 }
 
 :deep(.el-switch.is-checked .el-switch__core .el-switch__action) {

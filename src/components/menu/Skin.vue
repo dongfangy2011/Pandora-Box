@@ -102,11 +102,11 @@ onMounted(async () => {
   bottom: 32px;
   margin-left: 30px;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--text-color);;
+  background-color: var(--skin-bg-color);
+  color: var(--text-color);
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--skin-box-shadow);
   text-align: center;
   z-index: 1;
   transition: all 0.3s ease;
@@ -120,6 +120,6 @@ onMounted(async () => {
 }
 
 .dropdown-item:hover {
-  background-color: #555;
+  background-color: var(--skin-hover-color);
 }
 </style>

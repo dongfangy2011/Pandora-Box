@@ -2,7 +2,7 @@
   <div class="custom-style">
     <el-segmented v-model="menuStore.rule" :options="getOptions()">
       <template #default="scope">
-        <div>{{ scope.item["label"] }}</div>
+        <div>{{ (scope as any).item["label"] }}</div>
       </template>
     </el-segmented>
   </div>
@@ -66,8 +66,8 @@ watch(
 
 .custom-style .el-segmented {
   min-width: 185px;
-  border: 1px solid #ccc;
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--sub-card-border);
+  background: var(--left-proxy-bg);
   box-shadow: var(--left-nav-shadow);
   --el-segmented-item-selected-color: var(--text-color);
   --el-segmented-item-selected-bg-color: var(--left-item-selected-bg);

@@ -195,8 +195,8 @@ const switchTemplate = async () => {
 
 .dropdown-btn {
   background: transparent;
-  color: white;
-  border: 2px solid white;
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
   padding: 5px 10px;
   cursor: pointer;
   font-size: 15px;
@@ -211,8 +211,8 @@ const switchTemplate = async () => {
 
 .dropdown-list {
   position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid white;
+  background: var(--skin-bg-color);
+  border: 2px solid var(--text-color);
   margin-top: 4px;
   padding: 0;
   list-style: none;
@@ -224,13 +224,13 @@ const switchTemplate = async () => {
 }
 
 .dropdown-item {
-  color: white;
+  color: var(--text-color);
   padding: 8px;
   cursor: pointer;
 }
 
 .dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--skin-hover-color);
 }
 
 .set-switch {

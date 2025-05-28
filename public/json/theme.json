@@ -1,19 +1,7 @@
 [
   {
     "id": "default",
-    "bg": "linear-gradient(to bottom, #434343, #000000)"
-  },
-  {
-    "id": "azure",
     "bg": "url('/images/quang.jpg')"
-  },
-  {
-    "id": "dog",
-    "bg": [
-      "url('/images/dog1.jpg')",
-      "url('/images/dog2.jpg')",
-      "url('/images/dog3.jpg')"
-    ]
   },
   {
     "id": "harbor",

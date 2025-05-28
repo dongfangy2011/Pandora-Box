@@ -30,7 +30,7 @@ async function getWebTestList() {
     webTestList.splice(0, webTestList.length)
   }
   const list = await api.getWebTest()
-  list.forEach(item => {
+  list.forEach((item: any) => {
     webTestList.push(item)
   })
 }
@@ -334,7 +334,7 @@ onMounted(async () => {
 }
 
 .tip:hover {
-  color: #cccccc;
+  color: var(--hr-color);
   cursor: pointer;
 }
 
@@ -379,7 +379,7 @@ onMounted(async () => {
   width: 17px;
   height: 17px;
   background-color: red;
-  color: var(--text-color);
+  color: white;
   font-size: 15px;
   border-radius: 50%;
   display: flex;
@@ -397,7 +397,7 @@ onMounted(async () => {
   width: 17px;
   height: 17px;
   background-color: blue;
-  color: var(--text-color);
+  color: white;
   font-size: 9px;
   border-radius: 50%;
   display: flex;

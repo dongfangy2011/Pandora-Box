@@ -197,8 +197,8 @@ onMounted(async () => {
 <style scoped>
 .sub {
   width: 184px; /* 卡片宽度 */
-  background-color: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
-  border: 1px solid #ccc;
+  background-color: var(--left-proxy-bg); /* 半透明白色背景 */
+  border: 1px solid var(--sub-card-border);
   border-radius: 8px;
   box-shadow: var(--left-nav-shadow);
   line-height: 1.5;

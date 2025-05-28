@@ -8,6 +8,7 @@ import messages from "@intlify/unplugin-vue-i18n/messages";
 import ElementPlus from "element-plus";
 import VueApexCharts from "vue3-apexcharts";
 import "element-plus/dist/index.css";
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import "./styles/global.css";
 import "./styles/basic.css";
 import {useMenuStore} from "@/store/menuStore";

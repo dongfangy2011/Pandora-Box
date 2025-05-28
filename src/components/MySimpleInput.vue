@@ -60,8 +60,8 @@ function clearInput() {
 
 .custom-input {
   width: 100%; /* 撑满宽度 */
-  padding: 8px;
-  padding-right: 32px; /* 为清除按钮预留空间 */
+  /* 为清除按钮预留空间 */
+  padding: 8px 32px 8px 8px;
   border: 2px solid var(--text-color); /* 边框 */
   border-radius: 8px; /* 圆角 */
   background-color: transparent; /* 背景透明 */
@@ -77,7 +77,7 @@ function clearInput() {
 }
 
 .custom-input::placeholder {
-  color: rgba(255, 255, 255, 0.6); /* 占位符颜色稍微透明 */
+  color: var(--placeholder-color); /* 占位符颜色稍微透明 */
 }
 
 .clear-button {

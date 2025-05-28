@@ -27,42 +27,31 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue';
 import {useMenuStore} from "@/store/menuStore";
+import {preloadBackgroundImage} from "@/util/theme";
 
 const menuStore = useMenuStore();
 
 // 当前背景
-const defaultBackground = "linear-gradient(to bottom, #434343, #000000)"
-const currentBackground = ref(defaultBackground);
+const currentBackground = ref("url('/images/quang.jpg')");
 
-// 预加载背景
-function preloadBackgroundImage(bg: string) {
-  if (bg.startsWith('url(')) {
-    const imgUrl = bg.slice(5, -2); // 提取 url('/path') 中的地址
-    const img = new Image();
-    img.src = imgUrl;
-    img.onload = () => {
-      currentBackground.value = bg;
-    };
-    img.onerror = () => {
-      console.error(`Failed to load background image: ${imgUrl}`);
-      currentBackground.value = defaultBackground;
-    };
-  } else {
-    currentBackground.value = bg; // 直接应用渐变背景
-  }
+// 切换背景
+const changeBg = (bg: string, useWhite: boolean) => {
+  currentBackground.value = bg;
+  menuStore.setUseWhite(useWhite);
 }
 
 const isWindows = ref(false)
 onMounted(() => {
-  preloadBackgroundImage(menuStore.background);
+  preloadBackgroundImage(menuStore.background, changeBg);
   // @ts-ignore
   if (window["pxShowBar"]) {
     isWindows.value = true;
   }
 });
 
+// 监控背景切换
 watch(() => menuStore.background, (nextBackground) => {
-  preloadBackgroundImage(nextBackground);
+  preloadBackgroundImage(nextBackground, changeBg);
 });
 
 </script>
@@ -74,13 +63,12 @@ watch(() => menuStore.background, (nextBackground) => {
   display: flex;
   height: 100vh;
   color: var(--text-color);
-  background-color: #000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--blend-color);
   background-blend-mode: multiply;
 }
 
@@ -98,6 +86,7 @@ watch(() => menuStore.background, (nextBackground) => {
   border-radius: 10px;
   background-color: var(--right-bg-color);
   color: var(--text-color);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .top-title {

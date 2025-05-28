@@ -32,39 +32,80 @@ const setCSSVariables = (vars: Record<string, string>) => {
 
 export const changeTheme = (img: HTMLImageElement): boolean => {
     const baseColor = chroma(colorThief.getColor(img));
-    const [h, , l] = baseColor.hsl();
+    const [h, s, l] = baseColor.hsl();
+
     const useWhiteText = shouldUseWhiteText(img);
+    const textRGB = useWhiteText ? [255, 255, 255] : [0, 0, 0];
+    const textColor = useWhiteText ? "#fff" : "#000";
 
-    let saturation = l >= 0.85 ? 0.5 : 0.8;
-    let lightness = l <= 0.25 ? 0.4 : Math.min(l + 0.2, 1);
-    let selectedColor = chroma.hsl(h + 20, saturation, lightness);
+    // ========= 🎯 智能色相偏移逻辑（避免紫） =========
+    let hueShifted: number;
 
-    // 混合调整
-    const luminance = getPerceivedLuminance(selectedColor.rgb());
-    const mixRatio = luminance > 0.75 ? 0.15 : 0.3;
-    const finalAlpha = luminance > 0.75 ? 0.95 : 0.85;
+    if (h >= 200 && h <= 250) {
+        // 如果已经是蓝色基调，就不要往紫色走
+        hueShifted = h - 10; // 轻微往青偏
+    } else if (h > 250 && h < 320) {
+        hueShifted = h - 20; // 避开紫色区
+    } else {
+        hueShifted = (h + 25) % 360; // 正常提亮
+    }
 
-    selectedColor = chroma
-        .mix(selectedColor, "#3B6FC4", mixRatio)
-        .alpha(finalAlpha);
+    let selectedColor = chroma.hsl(
+        hueShifted,
+        Math.min(s + 0.25, 1),
+        Math.min(Math.max(l, 0.45), 0.72)
+    )
+        .saturate(0.4)
+        .brighten(0.2)
+        .alpha(0.9);
 
+    // ========= 🔎 对比度保障 =========
+    const getContrast = (rgb1: number[], rgb2: number[]): number => {
+        const luminance = (rgb: number[]) => {
+            const a = rgb.map((v) => {
+                v /= 255;
+                return v <= 0.03928
+                    ? v / 12.92
+                    : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+        };
+        const L1 = luminance(rgb1);
+        const L2 = luminance(rgb2);
+        return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+    };
+
+    let contrast = getContrast(selectedColor.rgb(), textRGB);
+    if (contrast < 3) {
+        selectedColor = useWhiteText
+            ? selectedColor.darken(0.8)
+            : selectedColor.brighten(0.8);
+    }
+
+    const contrastWithBase = getContrast(selectedColor.rgb(), baseColor.rgb());
+    if (contrastWithBase < 2.5) {
+        selectedColor = selectedColor.brighten(0.5);
+    }
+
+    // ========= 🎨 背景与边界辅助色 =========
     const backgroundBlendColor = chroma
-        .mix(useWhiteText ? "#000" : "#fff", selectedColor, mixRatio)
+        .mix(useWhiteText ? "#000" : "#fff", selectedColor, 0.2)
         .alpha(useWhiteText ? 0.4 : 0.3)
         .css();
 
     const backgroundRightColor = chroma
-        .mix(baseColor, selectedColor, 0.3)
-        .darken(0.3)
-        .alpha(0.2)
+        .mix(baseColor, selectedColor, 0.25)
+        .brighten(0.1)
+        .alpha(0.15)
         .css();
 
     const subtitleColor = useWhiteText
-        ? selectedColor.brighten(2).css()
-        : selectedColor.darken(2).css();
+        ? selectedColor.brighten(1.5).css()
+        : selectedColor.darken(1).css();
 
+    // ========= ✅ 应用主题色 =========
     setCSSVariables({
-        "text-color": useWhiteText ? "#fff" : "#000",
+        "text-color": textColor,
         "top-hr-color": subtitleColor,
         "left-item-selected-bg": selectedColor.css(),
         "blend-color": backgroundBlendColor,
@@ -73,6 +114,7 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
 
     return useWhiteText;
 };
+
 
 // ======================== 背景处理工具 ======================== //
 

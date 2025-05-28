@@ -32,7 +32,7 @@ import {preloadBackgroundImage} from "@/util/theme";
 const menuStore = useMenuStore();
 
 // 当前背景
-const currentBackground = ref("url('/images/quang.jpg')");
+const currentBackground = ref("linear-gradient(to bottom, #434343, #000000)");
 
 // 切换背景
 const changeBg = (bg: string, useWhite: boolean) => {

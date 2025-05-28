@@ -99,7 +99,7 @@ function handleDrop(e: any) {
   right: 0;
   bottom: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--skin-bg-color);
   display: flex;
   justify-content: center;
   align-items: center;

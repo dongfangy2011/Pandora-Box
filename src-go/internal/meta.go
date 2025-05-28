@@ -56,8 +56,11 @@ func Init() {
 	// 修改权限
 	pathTemp := utils.GetUserHomeDir("logs", "px-client.log")
 	_ = utils.SetPermissions(pathTemp)
-	pathTemp = utils.GetUserHomeDir("px-electron.db", "config.json")
+	pathTemp = utils.GetUserHomeDir("px-electron.db")
 	_ = utils.SetPermissions(pathTemp)
+	pathTemp = utils.GetUserHomeDir("px-electron.db/config.json")
+	pathTempDst := utils.GetUserHomeDir("px-electron.db/config_temp.json")
+	_ = utils.ModifyFilePermissions(pathTemp, pathTempDst)
 	log.Infoln("[Permission] is ok")
 
 	// 释放资源文件

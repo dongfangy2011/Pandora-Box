@@ -11,7 +11,7 @@ export const useMenuStore = defineStore('menu', {
         tun: false,
         language: 'zh',
         ruleMenu: 'Now',
-        background: 'linear-gradient(to bottom, #434343, #000000)',
+        background: 'url("/images/quang.jpg")',
         useWhite: true
     }),
     actions: {

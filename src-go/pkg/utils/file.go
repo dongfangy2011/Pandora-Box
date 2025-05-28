@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/snakem982/pandora-box/pkg/constant"
+	"io"
 	"os"
 	"os/exec"
 	"os/user"
@@ -172,4 +173,52 @@ func GetUserHomeDir(paths ...string) string {
 	// 如果 os.UserHomeDir 不适用，使用 os/user 包获取
 	currentUser, _ := user.Current()
 	return filepath.Join(append([]string{currentUser.HomeDir, constant.DefaultWorkDir}, paths...)...)
+}
+
+// CopyFile 文件复制函数
+func CopyFile(src, dst string) error {
+	sourceFile, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer func(sourceFile *os.File) {
+		err := sourceFile.Close()
+		if err != nil {
+
+		}
+	}(sourceFile)
+
+	destFile, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer func(destFile *os.File) {
+		err := destFile.Close()
+		if err != nil {
+
+		}
+	}(destFile)
+
+	_, err = io.Copy(destFile, sourceFile)
+	return err
+}
+
+// ModifyFilePermissions 复制文件、修改权限并替换原文件
+func ModifyFilePermissions(originalPath, tempPath string) error {
+	// 复制文件
+	if err := CopyFile(originalPath, tempPath); err != nil {
+		return fmt.Errorf("文件复制失败: %v", err)
+	}
+
+	// 修改权限
+	if err := SetPermissions(tempPath); err != nil {
+		return fmt.Errorf("修改权限失败: %v", err)
+	}
+
+	// 替换原文件
+	if err := os.Rename(tempPath, originalPath); err != nil {
+		return fmt.Errorf("替换文件失败: %v", err)
+	}
+
+	return nil
 }

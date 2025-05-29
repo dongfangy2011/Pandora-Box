@@ -247,9 +247,9 @@ async function changeProxy(now: any, name: any) {
   transform: translateX(66px); /* 调整偏移量，与输入框左边对齐 */
   width: 235px; /* 与输入框宽度一致 */
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.8); /* 背景透明 */
+  background-color: var(--skin-bg-color); /* 背景透明 */
   z-index: 9999; /* 确保下拉框显示在最上层 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--skin-box-shadow);
   color: var(--text-color); /* 文字颜色为白色 */
   font-size: 12px;
 }
@@ -274,7 +274,8 @@ async function changeProxy(now: any, name: any) {
 }
 
 .dropdown ul li:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* 鼠标悬停时背景微亮 */
+  border-radius: 5px;
+  background-color: var(--skin-hover-color); /* 鼠标悬停时背景微亮 */
 }
 
 .sName {

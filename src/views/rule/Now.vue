@@ -136,7 +136,7 @@ watch(() => webStore.fProfile, async () => {
 }
 
 .title {
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 1px solid var(--text-color);
   padding: 8px 10px;
   font-weight: bold;
 }
@@ -147,18 +147,18 @@ watch(() => webStore.fProfile, async () => {
 }
 
 .info {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--sub-card-border);
   padding: 8px 10px;
 }
 
 .info-s {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--sub-card-border);
   padding: 8px 10px;
-  background-color: rgba(128, 128, 128, 0.2); /* 深灰色，透明度为50% */
+  background-color: var(--rule-list-bg); /* 深灰色，透明度为50% */
 }
 
 .info:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--rule-list-hover);
 }
 
 .info-list::-webkit-scrollbar {

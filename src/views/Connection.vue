@@ -209,11 +209,11 @@ function closeAll() {
 }
 
 .info {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--sub-card-border);
   padding: 5px 10px;
   font-size: 15px;
   line-height: 1.6;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--left-bg-color);
   border-radius: 10px;
 }
 

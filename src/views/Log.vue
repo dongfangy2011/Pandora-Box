@@ -98,12 +98,12 @@ function filterData() {
 }
 
 .info {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--sub-card-border);
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
   user-select: text;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--left-bg-color);
 }
 
 .info-list::-webkit-scrollbar {

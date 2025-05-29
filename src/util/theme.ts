@@ -89,19 +89,32 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
 
     // ========= 🎨 背景与边界辅助色 =========
     const backgroundBlendColor = chroma
-        .mix(useWhiteText ? "#000" : "#fff", selectedColor, 0.2)
-        .alpha(useWhiteText ? 0.4 : 0.3)
+        .mix(useWhiteText ? "#000" : "#fff", selectedColor, 0.3) // 稍多 selectedColor 的比例
+        .set('hsl.s', '*1.1')  // 稍提饱和度
+        .set('hsl.l', '*1.05') // 微调亮度，避免混得太灰
+        .alpha(useWhiteText ? 0.3 : 0.2) // 稍提透明度，提升存在感
         .css();
 
     const backgroundRightColor = chroma
-        .mix(baseColor, selectedColor, 0.25)
-        .brighten(0.1)
-        .alpha(0.15)
+        .mix(baseColor, selectedColor, 0.3)
+        .set('hsl.s', '*1.2')
+        .set('hsl.l', '*1.1')
+        .alpha(useWhiteText ? 0.15 : 0.25)
         .css();
 
-    const subtitleColor = useWhiteText
-        ? selectedColor.brighten(1.5).css()
-        : selectedColor.darken(1).css();
+    // ========= 🎯 副标题颜色（对比增强 + 可见度控制） =========
+    let subtitleBase = useWhiteText
+        ? selectedColor.brighten(1.2)
+        : selectedColor.darken(0.8);
+
+    if (getContrast(subtitleBase.rgb(), textRGB) < 2.8) {
+        subtitleBase = useWhiteText
+            ? subtitleBase.brighten(0.5)
+            : subtitleBase.darken(0.5);
+    }
+
+    const subtitleColor = subtitleBase.alpha(0.9).css();
+
 
     // ========= ✅ 应用主题色 =========
     setCSSVariables({

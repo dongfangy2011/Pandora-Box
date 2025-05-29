@@ -12,6 +12,7 @@ require (
 	github.com/metacubex/mihomo v1.19.9
 	github.com/panjf2000/ants/v2 v2.11.3
 	github.com/sirupsen/logrus v1.9.3
+	go.uber.org/automaxprocs v1.6.0
 	golang.org/x/net v0.40.0
 	golang.org/x/sys v0.33.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -71,7 +72,7 @@ require (
 	github.com/metacubex/sing-shadowsocks2 v0.2.4 // indirect
 	github.com/metacubex/sing-shadowtls v0.0.0-20250503063515-5d9f966d17a2 // indirect
 	github.com/metacubex/sing-tun v0.4.6-0.20250524142129-9d110c0af70c // indirect
-	github.com/metacubex/sing-vmess v0.2.1 // indirect
+	github.com/metacubex/sing-vmess v0.2.2 // indirect
 	github.com/metacubex/sing-wireguard v0.0.0-20250503063753-2dc62acc626f // indirect
 	github.com/metacubex/smux v0.0.0-20250503055512-501391591dee // indirect
 	github.com/metacubex/tfo-go v0.0.0-20250516165257-e29c16ae41d4 // indirect
@@ -106,7 +107,6 @@ require (
 	gitlab.com/go-extension/aes-ccm v0.0.0-20230221065045-e58665ef23c7 // indirect
 	gitlab.com/yawning/bsaes.git v0.0.0-20190805113838-0a714cd429ec // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/mock v0.5.2 // indirect
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba // indirect
 	golang.org/x/crypto v0.38.0 // indirect
@@ -120,4 +120,4 @@ require (
 	lukechampine.com/blake3 v1.4.1 // indirect
 )
 
-replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.0.50-moshen
+replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.0.51-moshen

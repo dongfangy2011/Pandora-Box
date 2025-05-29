@@ -144,8 +144,8 @@ github.com/metacubex/sing-shadowtls v0.0.0-20250503063515-5d9f966d17a2 h1:gXU+MY
 github.com/metacubex/sing-shadowtls v0.0.0-20250503063515-5d9f966d17a2/go.mod h1:mbfboaXauKJNIHJYxQRa+NJs4JU9NZfkA+I33dS2+9E=
 github.com/metacubex/sing-tun v0.4.6-0.20250524142129-9d110c0af70c h1:Y6jk7AH5BEg9Dsvczrf/KokYsvxeKSZZlCLHg+hC4ro=
 github.com/metacubex/sing-tun v0.4.6-0.20250524142129-9d110c0af70c/go.mod h1:HDaHDL6onAX2ZGbAGUXKp++PohRdNb7Nzt6zxzhox+U=
-github.com/metacubex/sing-vmess v0.2.1 h1:I6gM3VUjtvJ15D805EUbNH+SRBuqzJeFnuIbKYUsWZ0=
-github.com/metacubex/sing-vmess v0.2.1/go.mod h1:DsODWItJtOMZNna8Qhheg8r3tUivrcO3vWgaTYKnfTo=
+github.com/metacubex/sing-vmess v0.2.2 h1:nG6GIKF1UOGmlzs+BIetdGHkFZ20YqFVIYp5Htqzp+4=
+github.com/metacubex/sing-vmess v0.2.2/go.mod h1:CVDNcdSLVYFgTHQlubr88d8CdqupAUDqLjROos+H9xk=
 github.com/metacubex/sing-wireguard v0.0.0-20250503063753-2dc62acc626f h1:Sr/DYKYofKHKc4GF3qkRGNuj6XA6c0eqPgEDN+VAsYU=
 github.com/metacubex/sing-wireguard v0.0.0-20250503063753-2dc62acc626f/go.mod h1:jpAkVLPnCpGSfNyVmj6Cq4YbuZsFepm/Dc+9BAOcR80=
 github.com/metacubex/smux v0.0.0-20250503055512-501391591dee h1:lp6hJ+4wCLZu113awp7P6odM2okB5s60HUyF0FMqKmo=
@@ -210,8 +210,8 @@ github.com/sina-ghaderi/rabbitio v0.0.0-20220730151941-9ce26f4f872e h1:ur8uMsPIF
 github.com/sina-ghaderi/rabbitio v0.0.0-20220730151941-9ce26f4f872e/go.mod h1:+e5fBW3bpPyo+3uLo513gIUblc03egGjMM0+5GKbzK8=
 github.com/sirupsen/logrus v1.9.3 h1:dueUQJ1C2q9oE3F7wvmSGAaVtTmUizReu6fjN8uqzbQ=
 github.com/sirupsen/logrus v1.9.3/go.mod h1:naHLuLoDiP4jHNo9R0sCBMtWGeIprob74mVsIT4qYEQ=
-github.com/snakem982/mihomo v1.0.50-moshen h1:jIpNxlpK/QAyQutHS13QnqNtd9gUIxGEuj4phKeKLMo=
-github.com/snakem982/mihomo v1.0.50-moshen/go.mod h1:O+w73QA6kfGYVhMlkIFsIWHCMUxrrpIWTOG/JLnDgv8=
+github.com/snakem982/mihomo v1.0.51-moshen h1:qyW/IUyVbg6Dof1cQdiR/rHifM7afLzgfgTnOvAmIwM=
+github.com/snakem982/mihomo v1.0.51-moshen/go.mod h1:ih7BKy1pfqSvPRqaCcuFFK4oNRIFyBotoHX0PbhF7SQ=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=

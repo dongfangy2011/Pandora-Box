@@ -7,6 +7,7 @@ import (
 	"github.com/snakem982/pandora-box/pandora"
 	sys "github.com/snakem982/pandora-box/pkg/sys/proxy"
 	"github.com/snakem982/pandora-box/pkg/utils"
+	"go.uber.org/automaxprocs/maxprocs"
 	"net/url"
 	"os"
 	"os/signal"
@@ -14,6 +15,9 @@ import (
 )
 
 func main() {
+
+	// 优化线程资源配置
+	_, _ = maxprocs.Set(maxprocs.Logger(func(string, ...any) {}))
 
 	// 回调地址
 	addr := flag.String("addr", "", "callback address")

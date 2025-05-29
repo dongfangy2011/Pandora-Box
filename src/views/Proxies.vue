@@ -451,6 +451,10 @@ watch(() => proxiesStore.now, async () => {
   border-color: var(--text-color);
 }
 
+.proxy-group-title-select:hover {
+  cursor: default;
+}
+
 .proxy-nodes {
   display: flex;
   flex-wrap: wrap;
@@ -471,16 +475,19 @@ watch(() => proxiesStore.now, async () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: var(--left-nav-shadow);
   line-height: 1.3;
+  box-shadow: var(--left-nav-shadow);
 }
 
 .proxy-nodes-card:hover,
 .proxy-node-select {
   background-color: var(--left-item-selected-bg);
-  box-shadow: var(--left-nav-hover-shadow);
   border: 2px solid var(--text-color);
   cursor: pointer;
+}
+
+.proxy-node-select:hover {
+  cursor: default;
 }
 
 .proxy-nodes-title {

@@ -619,15 +619,10 @@ watch(() => webStore.dProfile, async (pList) => {
   box-shadow: var(--left-nav-shadow);
 }
 
-.sub-card:hover {
-  cursor: pointer;
-}
-
-.sub-card-select {
+.sub-card:hover,.sub-card-select {
   background-color: var(--left-item-selected-bg);
-  box-shadow: var(--left-nav-hover-shadow);
   border: 2px solid var(--text-color);
-  cursor: default;
+  cursor: pointer;
 }
 
 .sub-card-select:hover {

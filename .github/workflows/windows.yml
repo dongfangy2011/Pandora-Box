@@ -52,6 +52,7 @@ jobs:
       - name: Build Backend for ${{ matrix.arch }}
         shell: pwsh
         env:
+          CGO_ENABLED: 0
           GOARCH: ${{ matrix.arch }}
           VERSION: ${{ env.VERSION }}
         run: |

@@ -55,9 +55,9 @@
 
 ## 预览
 
-| 页面   | 界面预览                        |
-|--------|-------------------------------|
-| 首页   | ![General](doc/img/home.png)  |
-| 设置   | ![Setting](doc/img/setting.png)|
-| 代理   | ![Proxies](doc/img/proxies.png)|
-| 订阅   | ![Profiles](doc/img/profiles.png)|
+| 页面 | 界面预览                              |
+|----|-----------------------------------|
+| 首页 | ![General](doc/img/home.png)      |
+| 设置 | ![Setting](doc/img/setting.png)   |
+| 代理 | ![Proxies](doc/img/proxies.png)   |
+| 订阅 | ![Profiles](doc/img/profiles.png) |

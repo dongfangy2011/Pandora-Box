@@ -138,26 +138,39 @@ const extractImageUrl = (style: string): string | null => {
     return match?.[1] || null;
 };
 
+let isBgLoading = false;
+
 export function preloadBackgroundImage(
     bg: string,
     cb: (bg: string, useWhite: boolean) => void
-): any {
-    if (!bg.startsWith("url(")) {
-        return
+): void {
+    if (isBgLoading) {
+        console.warn("Background is loading, ignore new request:", bg);
+        return; // 正在加载，忽略此次调用
     }
 
-    const useFallback: any = () => preloadBackgroundImage(defaultBackground, cb)
+    if (!bg.startsWith("url(")) {
+        return;
+    }
+
     const imgUrl = extractImageUrl(bg);
     if (!imgUrl) {
-        useFallback()
-        return
+        return preloadBackgroundImage(defaultBackground, cb);
     }
+
+    isBgLoading = true; // 加锁
 
     const img = new Image();
     img.src = imgUrl;
-    img.onload = () => cb(bg, changeTheme(img));
+
+    img.onload = () => {
+        isBgLoading = false;
+        cb(bg, changeTheme(img));
+    };
+
     img.onerror = () => {
         console.error(`Failed to load background image: ${imgUrl}`);
-        useFallback();
+        isBgLoading = false;
+        preloadBackgroundImage(defaultBackground, cb); // fallback
     };
 }

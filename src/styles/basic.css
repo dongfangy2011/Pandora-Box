@@ -60,7 +60,10 @@
     --placeholder-color: rgba(255, 255, 255, 0.6);
 
     --rule-list-bg: rgba(128, 128, 128, 0.2);
-    --rule-list-hover: rgba(0, 0, 0, 0.2)
+    --rule-list-hover: rgba(0, 0, 0, 0.2);
+
+    --body-blur: blur(1px);
+    --body-blur-color: rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="dark"] {
@@ -105,4 +108,7 @@
 
     --rule-list-bg: rgba(0, 0, 0, 0.05);
     --rule-list-hover: rgba(255, 255, 255, 0.6);
+
+    --body-blur: blur(3px);
+    --body-blur-color: rgba(150, 150, 150, 0.1);
 }

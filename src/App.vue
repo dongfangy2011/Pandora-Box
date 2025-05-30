@@ -72,11 +72,24 @@ watch(() => menuStore.background, (nextBackground) => {
   background-blend-mode: multiply;
 }
 
+.cBody::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--body-blur-color);
+}
+
+
 .left {
   padding-right: 18px;
+  z-index: 1;
 }
 
 .right {
+  z-index: 1;
   overflow-y: hidden;
   overflow-x: hidden;
   position: relative;

@@ -132,6 +132,7 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
 // ======================== 背景处理工具 ======================== //
 
 const defaultBackground = "url('/images/quang.jpg')";
+const IMAGE_LOAD_TIMEOUT = 10000; // 10秒超时
 
 const extractImageUrl = (style: string): string | null => {
     const match = style.match(/^url\(["']?(.*?)["']?\)$/);
@@ -146,7 +147,7 @@ export function preloadBackgroundImage(
 ): void {
     if (isBgLoading) {
         console.warn("Background is loading, ignore new request:", bg);
-        return; // 正在加载，忽略此次调用
+        return;
     }
 
     if (!bg.startsWith("url(")) {
@@ -158,19 +159,36 @@ export function preloadBackgroundImage(
         return preloadBackgroundImage(defaultBackground, cb);
     }
 
-    isBgLoading = true; // 加锁
+    isBgLoading = true;
 
     const img = new Image();
-    img.src = imgUrl;
+    let isResolved = false;
+
+    const timeoutId = setTimeout(() => {
+        if (!isResolved) {
+            console.error(`Background image load timed out: ${imgUrl}`);
+            isResolved = true;
+            isBgLoading = false;
+            preloadBackgroundImage(defaultBackground, cb); // fallback
+        }
+    }, IMAGE_LOAD_TIMEOUT);
 
     img.onload = () => {
+        if (isResolved) return;
+        clearTimeout(timeoutId);
+        isResolved = true;
         isBgLoading = false;
         cb(bg, changeTheme(img));
     };
 
     img.onerror = () => {
+        if (isResolved) return;
+        clearTimeout(timeoutId);
+        isResolved = true;
         console.error(`Failed to load background image: ${imgUrl}`);
         isBgLoading = false;
         preloadBackgroundImage(defaultBackground, cb); // fallback
     };
+
+    img.src = imgUrl;
 }

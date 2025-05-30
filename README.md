@@ -1,5 +1,5 @@
 <div align="center">
-<img src="build/appicon.png"  style="width:160px">
+<img src="build/appicon.png"  style="width:160px" alt="icon"/>
 <h1>Pandora-Box</h1>
 <p>一个简易的 Mihomo 桌面客户端</p>
 </div>
@@ -22,15 +22,12 @@
 ## 支持的系统平台
 
 - Windows 10/11 AMD64/ARM64
-- MacOS 10.13+ AMD64
-- MacOS 11.0+ ARM64
+- MacOS 11.0+ AMD64/ARM64
 - Linux AMD64/ARM64
 
-## 提示 Px 开启 TUN 需要授权
-- 点击取消将以普通权限运行，不能开启Tun
-- 点击继续将以管理员权限运行，可以开启Tun
-- 按需选择即可
-- 不想每次打开软件提示授权，可在设置关闭
+## 如何开启 TUN
+- 设置 --> 开启授权 --> 重启软件 --> 弹出授权框 --> 完成授权
+- 进入软件后 即可开启 TUN
 
 ## 提示 Px 需要网络接入
 - 点击 允许 即可

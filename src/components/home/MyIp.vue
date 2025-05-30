@@ -40,40 +40,6 @@ function updateTimer() {
   time.value = show;
 }
 
-// 获取 ip 信息
-async function getIpInfo(hide: boolean = true) {
-  ipInfo.value = homeStore.ip;
-  try {
-    // 切换节点后才进行 ip 请求
-    let md6 = await api.getGroupMd5()
-    md6 += menuStore.language
-    if (homeStore.md6 === md6) {
-      return
-    } else {
-      homeStore.setMd6(md6)
-    }
-
-    // 进行ip探测
-    const url = "http://ip-api.com/json/?lang=" + t('home.ip.lang');
-    const data = await api.getWebTestIp({url});
-    data['as'] = data['as'].split(" ")[0];
-
-    // 绑定数据
-    ipInfo.value = data;
-    homeStore.setIp(data)
-
-  } catch (e) {
-    if (hide) {
-      // 隐藏错误提示
-      return
-    }
-    // 显示错误提示
-    if (e['message']) {
-      pError(e['message'])
-    }
-  }
-}
-
 // 页面变量
 const time = ref("");
 const admin = ref("off");
@@ -88,6 +54,68 @@ const ipInfo = ref({
   timezone: '',
   as: '',
 })
+
+
+// 获取 ip 信息
+async function getIpInfo(hide: boolean = true) {
+  ipInfo.value = homeStore.ip;
+  let md6: string
+  try {
+    // 切换节点后才进行 ip 请求
+    md6 = await api.getGroupMd5()
+    md6 += menuStore.language
+    if (homeStore.md6 === md6) {
+      return
+    }
+
+    // 进行ip探测
+    const url = "http://ip-api.com/json/?lang=" + t('home.ip.lang');
+    const data = await api.getWebTestIp({url});
+    data['as'] = data['as'].split(" ")[0];
+
+    // 绑定数据
+    ipInfo.value = data;
+    homeStore.setIp(data)
+
+    // 存储更新标志
+    homeStore.setMd6(md6)
+
+  } catch (e) {
+    await getIpInfoFallback(md6)
+    if (hide) {
+      // 隐藏错误提示
+      return
+    }
+    // 显示错误提示
+    if (e['message']) {
+      pError(e['message'])
+    }
+  }
+}
+
+async function getIpInfoFallback(md6: string) {
+  try {
+    // 进行ip探测
+    const url = "https://ipwhois.app/json/?lang=" + t('home.ip.lang');
+    const fullIpData = await api.getWebTestIp({url});
+
+    // 绑定数据
+    ipInfo.value = {
+      query: fullIpData.ip,
+      regionName: fullIpData.region,
+      country: fullIpData.country,
+      city: fullIpData.city,
+      isp: fullIpData.isp,
+      timezone: fullIpData.timezone,
+      as: fullIpData.asn,
+    }
+    homeStore.setIp(ipInfo.value)
+
+    // 存储更新标志
+    homeStore.setMd6(md6)
+  } catch (e) {
+  }
+}
 
 onMounted(async () => {
   // 每秒更新
@@ -108,7 +136,6 @@ onMounted(async () => {
     admin.value = "off"
   }
 })
-
 
 </script>
 

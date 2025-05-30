@@ -38,6 +38,10 @@ jobs:
       - name: Install Backend Dependencies
         run: |
           cd src-go
+          if [[ "${{ matrix.arch }}" == "amd64" ]]; then
+            # 用 sed 替换 go.mod 中的 go 版本行
+            sed -i.bak 's/^go 1\.24/go 1.20/' go.mod
+          fi
           go mod tidy
 
       - name: Get Latest Geo Data

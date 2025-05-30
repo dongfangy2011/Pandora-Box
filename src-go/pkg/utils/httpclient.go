@@ -23,6 +23,16 @@ var (
 	headPattern      = regexp.MustCompile(`204|blank|generate|gstatic`)
 )
 
+// closeResponseBody 关闭 resp.Body 并处理错误（建议放在 defer 中）
+func closeResponseBody(body io.Closer) {
+	if body == nil {
+		return
+	}
+	if err := body.Close(); err != nil {
+
+	}
+}
+
 // newHttpClient 创建带代理和超时的 http.Client
 func newHttpClient(proxyURL string, timeout time.Duration) (*http.Client, error) {
 	var proxyFunc func(*http.Request) (*url.URL, error)
@@ -85,7 +95,7 @@ func SendGet(requestURL string, headers map[string]string, proxyURL string) (str
 	if err != nil {
 		return "", nil, err
 	}
-	defer resp.Body.Close()
+	defer closeResponseBody(resp.Body)
 
 	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -119,7 +129,7 @@ func FastGet(requestURL string, headers map[string]string, proxyURL string) (*Re
 			errors <- err
 			return
 		}
-		defer resp.Body.Close()
+		defer closeResponseBody(resp.Body)
 
 		bodyBytes, err := io.ReadAll(resp.Body)
 		if err != nil || len(bodyBytes) == 0 {
@@ -177,7 +187,7 @@ func SendHead(requestURL string, proxyURL string) (int, error) {
 	if err != nil {
 		return 500, err
 	}
-	defer resp.Body.Close()
+	defer closeResponseBody(resp.Body)
 
 	return resp.StatusCode, nil
 }

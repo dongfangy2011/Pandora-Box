@@ -15,13 +15,12 @@ let mainWindow: BrowserWindow;
 // 屏蔽安全警告
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 const createWindow = () => {
-
-    // 窗口配置
     let windowOptions: BrowserWindowConstructorOptions = {
         minWidth: 960,
         minHeight: 660,
         width: 1100,
         height: 760,
+        show: false, // 先不显示窗口
         center: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
@@ -29,41 +28,46 @@ const createWindow = () => {
             webSecurity: false,
             nodeIntegrationInWorker: true
         },
-        // expose window controls in Windows/Linux
         ...(process.platform !== 'darwin' ? {
             titleBarStyle: 'hidden'
-        } : {titleBarStyle: 'hiddenInset'})
-    }
+        } : {
+            titleBarStyle: 'hiddenInset'
+        })
+    };
 
-    // 从 store 获取保存的窗口尺寸与位置
+    // 恢复上次窗口位置
     const savedBounds: any = storeGet('windowBounds');
     if (savedBounds && savedBounds.x !== undefined && savedBounds.y !== undefined) {
         windowOptions = {
             ...windowOptions,
-            x: savedBounds.x,
-            y: savedBounds.y,
-            width: savedBounds.width,
-            height: savedBounds.height
-        }
+            ...savedBounds
+        };
     }
 
-    // 创建窗口
     mainWindow = new BrowserWindow(windowOptions);
-
-    // 加载托盘
-    initTray(mainWindow)
 
     // 隐藏菜单栏
     mainWindow.setMenu(null);
 
-    if (isDev) {
-        const filePath = `http://localhost:5173?port=${storeInfo.port()}&secret=${storeInfo.secret()}`;
-        mainWindow.loadURL(filePath);
-    } else {
-        const filePath = `http://${storeInfo.listenAddr()}/index.html?port=${storeInfo.port()}&secret=${storeInfo.secret()}`;
-        console.log('准备就绪，加载窗口，url=', filePath);
-        mainWindow.loadURL(filePath);
-    }
+    // 托盘
+    initTray(mainWindow);
+
+    // 页面加载
+    const filePath = isDev
+        ? `http://localhost:5173?port=${storeInfo.port()}&secret=${storeInfo.secret()}`
+        : `http://${storeInfo.listenAddr()}/index.html?port=${storeInfo.port()}&secret=${storeInfo.secret()}`;
+
+    log.info('准备加载页面:', filePath);
+    mainWindow.loadURL(filePath).catch((err) => {
+        log.error('页面加载失败:', err);
+    });
+
+    // 页面加载完成再显示，避免白屏
+    mainWindow.webContents.once('did-finish-load', () => {
+        mainWindow.show();
+        mainWindow.focus();
+        log.info('页面加载成功:', filePath);
+    });
 };
 
 // 等待 backend 传来的 port 和 secret

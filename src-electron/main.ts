@@ -1,4 +1,4 @@
-import {app, BrowserWindow, BrowserWindowConstructorOptions} from 'electron';
+import {app, session, BrowserWindow, BrowserWindowConstructorOptions} from 'electron';
 import path from 'node:path';
 import {startServer, storeInfo} from "./server";
 import {doQuit, initTray, showWindow} from "./tray";
@@ -8,6 +8,15 @@ import {initStore, storeGet} from "./store";
 
 // 是否在开发模式
 const isDev = !app.isPackaged;
+
+// 生成一个随机 UA
+function getRandomUA() {
+    const agents = [
+        `Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/${Math.floor(Math.random() * 10 + 90)}.0.0.0 Safari/537.36`,
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 11_${Math.floor(Math.random() * 10 + 10)}_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36`
+    ];
+    return agents[Math.floor(Math.random() * agents.length)];
+}
 
 
 // 主窗口
@@ -67,6 +76,9 @@ const createWindow = () => {
         mainWindow.show();
         mainWindow.focus();
         log.info('页面加载成功:', filePath);
+
+        // 设置ua
+        mainWindow.webContents.setUserAgent(getRandomUA())
     });
 };
 
@@ -96,6 +108,12 @@ if (!gotTheLock) {
 
         // 等待后端启动
         await waitForReady;
+
+        // 设置请求头 Referer
+        session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+            details.requestHeaders['Referer'] = new URL(details.url).origin // 只发送域名
+            callback({ requestHeaders: details.requestHeaders })
+        })
 
         // 启动UI
         log.info('准备就绪，启动窗口，port=', storeInfo.port(), ' secret=', storeInfo.secret());

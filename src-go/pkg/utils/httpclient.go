@@ -19,7 +19,7 @@ var (
 	ConnTimeOut      = 14 * time.Second
 	DialTimeOut      = 5 * time.Second
 	FastTimeOut      = 15 * time.Second
-	defaultUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/537.36 (KHTML, like Gecko) Version/16.4 Safari/537.36"
+	defaultUserAgent = "clash-verge/v2.3.0"
 	headPattern      = regexp.MustCompile(`204|blank|generate|gstatic`)
 )
 

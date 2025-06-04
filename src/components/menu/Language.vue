@@ -10,6 +10,7 @@
          @mouseenter="cancelHide">
       <div class="dropdown-item" @click="changeLang('zh')">简体中文</div>
       <div class="dropdown-item" @click="changeLang('en')">English</div>
+      <div class="dropdown-item" @click="changeLang('ru')">Русский</div>
     </div>
   </div>
 </template>

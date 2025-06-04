@@ -5,7 +5,7 @@ import {useWebStore} from "@/store/webStore";
 import {prettyBytes, rJoin} from "@/util/format";
 import {onBeforeRouteLeave} from "vue-router";
 import {formatDistance, Locale} from 'date-fns';
-import {enUS, zhCN} from 'date-fns/locale'
+import {enUS, ru, zhCN} from 'date-fns/locale'
 import {useI18n} from "vue-i18n";
 import createApi from "@/api";
 
@@ -18,6 +18,7 @@ const {t} = useI18n()
 const localeMap: Record<string, Locale> = {
   '简体中文': zhCN,
   'English': enUS,
+  'Русский': ru,
 };
 
 function fDate(start: any): string {

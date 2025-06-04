@@ -10,6 +10,7 @@
          @mouseenter="cancelHide">
       <div class="dropdown-item" @click="changeLang('zh')">简体中文</div>
       <div class="dropdown-item" @click="changeLang('en')">English</div>
+      <div class="dropdown-item" @click="changeLang('ru')">Русский</div>
     </div>
   </div>
 </template>
@@ -106,7 +107,7 @@ onMounted(() => {
 
 .dropdown-content {
   font-size: 14px;
-  width: 80px;
+  min-width: 80px;
   position: absolute;
   bottom: 32px;
   margin-left: 30px;

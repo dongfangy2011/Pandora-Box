@@ -97,7 +97,7 @@ onMounted(async () => {
 
 .dropdown-content {
   font-size: 14px;
-  width: 80px;
+  min-width: 80px;
   position: absolute;
   bottom: 32px;
   margin-left: 30px;

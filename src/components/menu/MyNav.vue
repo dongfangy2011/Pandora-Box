@@ -6,7 +6,7 @@ import {useRouter} from "vue-router";
 const menuStore = useMenuStore()
 const router = useRouter()
 
-const menu = reactive({
+const menu: any = reactive({
   homeStatus: false,
   setStatus: false,
   proxyStatus: false,
@@ -129,6 +129,7 @@ function leave(btn: string) {
   color: var(--text-color);
   font-size: 14px;
   box-shadow: var(--left-nav-hover-shadow);
+  padding: 13px 10px;
 }
 
 .button-container button.active {

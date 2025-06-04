@@ -82,7 +82,7 @@ onMounted(() => Events.On("readyToQuit", quit))
 
 .dropdown-content {
   font-size: 14px;
-  width: 50px;
+  min-width: 50px;
   position: absolute;
   bottom: 32px;
   margin-left: 30px;

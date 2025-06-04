@@ -2,7 +2,9 @@
   <div class="custom-style">
     <el-segmented v-model="menuStore.rule" :options="getOptions()">
       <template #default="scope">
-        <div>{{ (scope as any).item["label"] }}</div>
+        <div class="rule-mode" :title='(scope as any).item["label"]'>
+          {{ (scope as any).item["label"] }}
+        </div>
       </template>
     </el-segmented>
   </div>
@@ -78,5 +80,12 @@ watch(
 
 .custom-style .el-segmented:hover {
   box-shadow: var(--left-nav-hover-shadow);
+}
+
+.rule-mode {
+  max-width: 38px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

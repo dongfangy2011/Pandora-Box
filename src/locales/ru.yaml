@@ -1,0 +1,226 @@
+language: Русский
+
+nav:
+  home: Главная
+  setting: Настройки
+  proxies: Прокси
+  profiles: Профили
+
+rules:
+  rule: Правило
+  global: Глобальный
+  direct: Прямой
+  rule-switch: Переключено в режим Правил
+  global-switch: Переключено в Глобальный режим
+  direct-switch: Переключено в Прямой режим
+
+no-profile-warning: Пожалуйста, добавьте профиль, а затем откройте Tun
+select-profile-warning: Пожалуйста, выберите профиль, а затем откройте Tun
+proxy-switch: Прокси
+proxy-switch-on: Прокси ВКЛЮЧЕН
+proxy-switch-off: Прокси ВЫКЛЮЧЕН
+tun-switch: Tun
+tun-switch-on: Tun ВКЛЮЧЕН
+tun-switch-off: Tun ВЫКЛЮЧЕН
+tun-warning: Для режима Tun требуются права администратора
+
+sec-nav:
+  rule: Правило
+  conn: Соединения
+  log: Журнал
+  crawl: Сканирование
+
+delete: Удалить
+confirm: Подтвердить
+cancel: Отмена
+on: ВКЛ
+off: ВЫКЛ
+refresh: Обновить
+add: Добавить
+edit: Редактировать
+quit: Выйти
+theme: Тема
+mini: Свернуть
+max: Развернуть
+restore: Восстановить
+close: Закрыть
+minus: Свернуть в трей
+save: Сохранить
+copy:
+  title: Копировать
+  success: Успешно скопировано
+  fail: Не удалось скопировать
+switch:
+  ing: Переключение...
+  success: Переключено успешно
+search: Поиск прокси
+
+drag:
+  hear: Перетащите профиль сюда для импорта
+  size: Разрешён импорт только одного файла
+  add: Импортируется...
+  success: Импорт успешно завершён
+
+home:
+  download: Загрузка
+  upload: Отправка
+  memory: Память
+  web:
+    title: Тестирование сайта
+    edit: Название сайта
+    src: Иконка сайта (Base64 или URL)
+    test: URL для тестирования сайта
+    edit-tip: Название сайта не может быть пустым
+    src-tip: Иконка сайта не может быть пустой
+    test-tip: Ошибка формата тестового адреса сайта
+    success: Операция успешна
+    loading: Идёт тестирование сайта...
+    timeout: Т/О
+    wait: DUT
+  ip:
+    title: IP [FYI]
+    real: Реальный IP
+    city: Город
+    country: Страна
+    isp: Провайдер
+    asn: ASN
+    time-zone: Часовой пояс
+    lang: ru
+  system:
+    title: Система
+    os: ОС
+    runtime: Время работы
+    startup: Автозапуск
+    service: Режим службы
+    admin: Администратор
+    port: Смешанный порт
+    version: Pandora-Box
+    day: День
+
+setting:
+  title: Настройки
+  mihomo:
+    port: Смешанный порт
+    port-error: Номер порта должен быть больше 0 и меньше 65535
+    dns: DNS-переопределение
+    lan: ЛВС
+    bindAddress: Привязать адрес
+    bind-error: Неверный адрес
+  px:
+    auth: Совет по аутентификации
+    startup: Автозапуск
+    dir: Конфиг
+    open: Открыть
+    import: Импортировать
+    export: Экспортировать
+    update: Обновить
+    check: Проверить
+
+proxies:
+  title: Прокси
+  test: Тест задержки
+  hide-on: Показывать плохие узлы
+  hide-off: Скрывать плохие узлы
+  sort-on: Сортировать по умолчанию
+  sort-off: Сортировать по задержке
+  vertical-on: Переключить группировку на горизонтальную
+  vertical-off: Переключить группировку на выпадающую
+  direct: В настоящее время прямой режим
+  loading: Тестирование...
+
+profiles:
+  title: Профили
+  add: Добавить
+  paste: Импорт из буфера обмена
+  open: Импорт из файла
+  available: Доступно
+  use: Используется
+  expire: Истекает
+  update: Обновить
+  placeholder: Подписка, ShareLink, Yaml, Base64, Json
+  home: Перейти на страницу подписки
+  del-tip: Используется, нельзя удалить
+  edit:
+    title: Название
+    url: URL
+    update: Интервал обновления (часы)
+    title-tip: Название не может быть пустым
+    url-tip: URL не может быть пустым
+    url-error: Неверный формат URL
+    update-tip: Интервал обновления должен быть больше 0 и меньше 128
+    success: Успешно изменено
+  refresh:
+    ing: Обновление...
+    success: Успешно обновлено
+  switch:
+    ing: Переключение...
+    success: Переключено успешно
+
+rule:
+  title: Правило
+  success: Успешно сохранено
+  now:
+    title: Просмотр текущих правил
+    search: Поиск по содержимому
+    type: Тип
+    payload: Содержимое
+    proxy: Прокси
+  group:
+    title: Унифицированная группировка правил
+    model: Выберите шаблон
+    m1: По умолчанию
+    m2: Мульти-национальный
+    m3: Мульти-полный
+    reset: Сбросить
+    test: Тест
+    test-success : Тест успешно пройден
+    save-ing: Сохранение...
+    switch:
+      ing: Переключение...
+      success: Переключено успешно
+  ignore:
+    title: Игнорировать эти домены
+    tip: Разделяйте по строкам
+    place: Введите здесь
+
+connections:
+  title: Соединения
+  search: Поиск хоста
+  close: Закрыть все
+  host: Хост
+  download: Загрузка
+  upload: Отправка
+  rule: Правило
+  chains: Цепи
+
+log:
+  title: Журнал
+  search: Поиск
+
+dns:
+  title: DNS-переопределение
+  success: Успешно сохранено
+
+bg:
+  default: По умолчанию
+  azure: Лазурный
+  dog: Собака
+  harbor: Гавань
+  cuke: Огурец
+  sea: Безмятежный
+  women: Девушка
+  stars: Звёздный
+  handle: Приставка
+  comics: Комиксы
+  game: Игры
+  random: Случайный
+
+tray:
+  show: Показать окно
+  rule: Правило
+  global: Глобальный
+  direct: Прямой
+  profiles: Профили
+  proxy: Прокси
+  tun: TUN
+  quit: Выйти

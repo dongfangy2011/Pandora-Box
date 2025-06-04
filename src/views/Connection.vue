@@ -18,6 +18,7 @@ const {t} = useI18n()
 const localeMap: Record<string, Locale> = {
   '简体中文': zhCN,
   'English': enUS,
+  'Русский': ruRU,
 };
 
 function fDate(start: any): string {

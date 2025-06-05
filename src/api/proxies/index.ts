@@ -1,5 +1,5 @@
 // 排除的分组类型
-const exclude = {
+const exclude: any = {
     DIRECT: true,
     REJECT: true,
     "REJECT-DROP": true,
@@ -8,7 +8,7 @@ const exclude = {
 }
 
 // 不排除的节点类型
-const include = {
+const include: any = {
     Direct: true,
     Reject: true,
     RejectDrop: true,
@@ -67,12 +67,15 @@ export default function createProxiesApi(proxy: any) {
             }
 
             // 获取分组
-            const group = []
+            const group: any[] = []
             for (const name of proxies['GLOBAL']['all']) {
                 if (exclude[name]) {
                     continue
                 }
                 if (!include[proxies[name]['type']]) {
+                    continue
+                }
+                if (!!proxies[name]['hidden']) {
                     continue
                 }
                 group.push(name)

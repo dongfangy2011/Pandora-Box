@@ -152,7 +152,8 @@ func Resolve(content string, profile *models.Profile, refresh bool) error {
 
 		// 保存yaml
 		if len(rawCfg.ProxyProvider) > 0 || len(rawCfg.Proxy) > 0 {
-
+			// 防止重排序，重新赋值
+			rawCfg, _ = config.UnmarshalRawConfig(tempBytes)
 			// 对 provider 进行路径替换
 			findProvider := changeProvidersPath(profile.Order, rawCfg)
 			var yml []byte

@@ -1,4 +1,5 @@
 language: Русский
+lang: ru
 
 nav:
   home: Главная
@@ -85,7 +86,6 @@ home:
     isp: Провайдер
     asn: ASN
     time-zone: Часовой пояс
-    lang: ru
   system:
     title: Система
     os: ОС

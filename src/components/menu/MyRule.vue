@@ -2,7 +2,7 @@
   <div class="custom-style">
     <el-segmented v-model="menuStore.rule" :options="getOptions()">
       <template #default="scope">
-        <div class="rule-mode" :title='(scope as any).item["label"]'>
+        <div>
           {{ (scope as any).item["label"] }}
         </div>
       </template>
@@ -29,7 +29,7 @@ const api = createApi(proxy);
 // 国际化
 const {t} = useI18n();
 const getOptions = function (): any[] {
-  return [
+  const modes = [
     {
       label: t("rules.rule"),
       value: "rule",
@@ -38,17 +38,22 @@ const getOptions = function (): any[] {
       label: t("rules.global"),
       value: "global",
     },
-    {
+  ];
+
+  if (t("lang") != "ru") {
+    modes.push({
       label: t("rules.direct"),
       value: "direct",
-    },
-  ];
+    });
+  }
+
+  return modes
 };
 
 // 监听 store.rule 的变化
 watch(
     () => menuStore.rule,
-    (newValue, oldValue) => {
+    (newValue) => {
       api.updateConfigs({
         mode: newValue,
       }).then((res: any) => {
@@ -82,10 +87,7 @@ watch(
   box-shadow: var(--left-nav-hover-shadow);
 }
 
-.rule-mode {
-  max-width: 38px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+:deep(.el-segmented__item) {
+  padding: 0 8px;
 }
 </style>

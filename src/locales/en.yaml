@@ -1,4 +1,5 @@
 language: English
+lang: en
 
 nav:
   home: Home
@@ -85,7 +86,6 @@ home:
     isp: ISP
     asn: ASN
     time-zone: T-Zone
-    lang: en
   system:
     title: System
     os: OS

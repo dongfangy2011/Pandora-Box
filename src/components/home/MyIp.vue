@@ -69,7 +69,7 @@ async function getIpInfo(hide: boolean = true) {
     }
 
     // 进行ip探测
-    const url = "http://ip-api.com/json/?lang=" + t('home.ip.lang');
+    const url = "http://ip-api.com/json/?lang=" + t('lang');
     const data = await api.getWebTestIp({url});
     data['as'] = data['as'].split(" ")[0];
 
@@ -96,7 +96,7 @@ async function getIpInfo(hide: boolean = true) {
 async function getIpInfoFallback(md6: string) {
   try {
     // 进行ip探测
-    const url = "https://ipwhois.app/json/?lang=" + t('home.ip.lang');
+    const url = "https://ipwhois.app/json/?lang=" + t('lang');
     const fullIpData = await api.getWebTestIp({url});
 
     // 绑定数据

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="build/appicon.png" style="width:160px" alt="Pandora-Box"/>
+  <img src="../build/appicon.png" style="width:160px" alt="Pandora-Box"/>
   <h1>Pandora-Box</h1>
   <p>A simple desktop client for Mihomo</p>
 </div>
@@ -36,7 +36,7 @@
 
 ## Common macOS Issues
 
-- See [mac.md](doc/mac/mac.md)
+- See [mac.md](mac/mac.md)
 
 ## Major Improvements in the Latest Version
 
@@ -60,7 +60,7 @@
 
 | Tab      | New Interface with Different Themes |
 |----------|-------------------------------------|
-| Home     | ![General](doc/img/home.png)        |
-| Settings | ![Setting](doc/img/setting.png)     |
-| Proxies  | ![Proxies](doc/img/proxies.png)     |
-| Profiles | ![Profiles](doc/img/profiles.png)   |
+| Home     | ![General](img/home.png)            |
+| Settings | ![Setting](img/setting.png)         |
+| Proxies  | ![Proxies](img/proxies.png)         |
+| Profiles | ![Profiles](img/profiles.png)       |

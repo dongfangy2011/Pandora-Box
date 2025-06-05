@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="build/appicon.png" style="width:160px" alt="Pandora-Box"/>
+  <img src="../build/appicon.png" style="width:160px" alt="Pandora-Box"/>
   <h1>Pandora-Box</h1>
   <p>一个简易的 Mihomo 桌面客户端</p>
 </div>
@@ -36,7 +36,7 @@
 
 ## macOS 常见问题汇总
 
-- [mac.md](doc/mac/mac.md)
+- [mac.md](mac/mac.md)
 
 ## 新版主要改进
 
@@ -55,9 +55,9 @@
 
 ## 预览
 
-| 页面 | 界面预览                              |
-|----|-----------------------------------|
-| 首页 | ![General](doc/img/home.png)      |
-| 设置 | ![Setting](doc/img/setting.png)   |
-| 代理 | ![Proxies](doc/img/proxies.png)   |
-| 订阅 | ![Profiles](doc/img/profiles.png) |
+| 页面 | 界面预览                          |
+|----|-------------------------------|
+| 首页 | ![General](img/home.png)      |
+| 设置 | ![Setting](img/setting.png)   |
+| 代理 | ![Proxies](img/proxies.png)   |
+| 订阅 | ![Profiles](img/profiles.png) |

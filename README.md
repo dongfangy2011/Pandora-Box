@@ -48,6 +48,8 @@ It is designed for both casual and advanced users to easily manage and convert p
 - 📄 [License (GPL-3.0)](./LICENSE)
 - ❤️ Powered by [Mihomo](https://github.com/MetaCubeX/mihomo)
 
+  [![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
+
 ---
 
 📝 This README was generated with the assistance of AI and reviewed by the developer.  

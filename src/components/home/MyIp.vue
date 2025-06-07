@@ -146,11 +146,15 @@ onMounted(async () => {
       <div class="box box1">
         <div class="title">
           {{ $t('home.ip.title') }}
-          <el-icon size="22"
-                   @click="getIpInfo(false)"
-                   class="refreshIp">
-            <icon-mdi-refresh/>
-          </el-icon>
+          <el-tooltip
+              :content="$t('refresh')"
+              placement="top">
+            <el-icon size="22"
+                     @click="getIpInfo(false)"
+                     class="refreshIp">
+              <icon-mdi-refresh/>
+            </el-icon>
+          </el-tooltip>
         </div>
         <hr/>
         <ul class="info-list">

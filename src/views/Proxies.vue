@@ -477,6 +477,7 @@ watch(() => proxiesStore.now, async () => {
   justify-content: space-between;
   line-height: 1.3;
   box-shadow: var(--left-nav-shadow);
+  margin-top: 3px;
 }
 
 .proxy-nodes-card:hover,
@@ -500,7 +501,7 @@ watch(() => proxiesStore.now, async () => {
 .proxy-nodes-tags {
   font-size: 14px;
   display: flex;
-  margin-top: 8px;
+  margin-top: 10px;
   justify-content: space-between;
 }
 

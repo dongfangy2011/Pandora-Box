@@ -421,13 +421,16 @@ watch(() => webStore.dProfile, async (pList) => {
                   class="drag">
                 <icon-mdi-drag/>
               </el-icon>
-
-              <el-icon size="22"
-                       v-if="data.type == 1"
-                       class="ops"
-                       @click.stop="refresh(data)">
-                <icon-mdi-refresh/>
-              </el-icon>
+              <el-tooltip
+                  v-if="data.type == 1"
+                  :content="$t('refresh')"
+                  placement="top">
+                <el-icon size="22"
+                         class="ops"
+                         @click.stop="refresh(data)">
+                  <icon-mdi-refresh/>
+                </el-icon>
+              </el-tooltip>
 
             </div>
             <div
@@ -587,7 +590,7 @@ watch(() => webStore.dProfile, async (pList) => {
   margin-left: 10px;
   color: var(--top-hr-color);
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .profile-option {
@@ -617,9 +620,10 @@ watch(() => webStore.dProfile, async (pList) => {
   background: var(--sub-card-bg);
   color: var(--text-color);
   box-shadow: var(--left-nav-shadow);
+  margin-top: 5px;
 }
 
-.sub-card:hover,.sub-card-select {
+.sub-card:hover, .sub-card-select {
   background-color: var(--left-item-selected-bg);
   border: 2px solid var(--text-color);
   cursor: pointer;
@@ -648,7 +652,7 @@ watch(() => webStore.dProfile, async (pList) => {
   text-overflow: ellipsis;
   text-align: left;
   font-size: 14px;
-  padding: 5px 10px 2px 15px;
+  padding: 5px 10px 5px 15px;
   color: var(--text-color);
 }
 
@@ -657,7 +661,7 @@ watch(() => webStore.dProfile, async (pList) => {
   justify-content: flex-end;
   gap: 8px;
   margin-top: 5px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   color: var(--text-color);
 }
 

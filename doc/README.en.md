@@ -53,7 +53,6 @@
 
 - Web scraping module
 - Import/export module
-- Service mode with auto-start on boot
 - Bug fixes
 
 ## Preview

@@ -5,6 +5,7 @@ import {doQuit, initTray, showWindow} from "./tray";
 import {startBackend} from "./admin";
 import log from './log';
 import {initStore, storeGet} from "./store";
+import {isBootAutoLaunch, waitForNetworkReady} from "./launch";
 
 // 是否在开发模式
 const isDev = !app.isPackaged;
@@ -13,7 +14,7 @@ const isDev = !app.isPackaged;
 let mainWindow: BrowserWindow;
 // 屏蔽安全警告
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
-const createWindow = () => {
+const createWindow = (isBoot: boolean) => {
     let windowOptions: BrowserWindowConstructorOptions = {
         minWidth: 960,
         minHeight: 660,
@@ -56,16 +57,20 @@ const createWindow = () => {
         ? `http://localhost:5173?port=${storeInfo.port()}&secret=${storeInfo.secret()}`
         : `http://${storeInfo.listenAddr()}/index.html?port=${storeInfo.port()}&secret=${storeInfo.secret()}`;
 
-    log.info('准备加载页面:', filePath);
+    log.info('准备加载页面');
     mainWindow.loadURL(filePath).catch((err) => {
         log.error('页面加载失败:', err);
     });
 
     // 页面加载完成再显示，避免白屏
     mainWindow.webContents.once('did-finish-load', () => {
-        mainWindow.show();
-        mainWindow.focus();
-        log.info('页面加载成功:', filePath);
+        if (isBoot) {
+            log.info('静默启动完成');
+        } else {
+            mainWindow.show();
+            mainWindow.focus();
+            log.info('页面加载成功');
+        }
     });
 };
 
@@ -107,6 +112,24 @@ if (!gotTheLock) {
     app.on('activate', showWindow);
 
     app.whenReady().then(async () => {
+        // 判断是否开机启动
+        const isBoot = await isBootAutoLaunch();
+        log.info('是否开机启动:', isBoot);
+
+        // 如果是开机启动，则等待网络就绪（最多30秒）
+        if (isBoot) {
+            // 先隐藏dock
+            app.dock?.hide()
+
+            log.info('开机启动，等待网络准备...');
+            const networkReady = await waitForNetworkReady(30000, 'bing.com');
+            if (!networkReady) {
+                log.warn('网络检测超时，继续启动但可能无网络');
+            } else {
+                log.info('网络已准备好');
+            }
+        }
+
         // 初始化前端数据库
         initStore(log.getHomeDir())
 
@@ -128,6 +151,6 @@ if (!gotTheLock) {
 
         // 启动UI
         log.info('准备就绪，启动窗口，port=', storeInfo.port(), ' secret=', storeInfo.secret());
-        createWindow();
+        createWindow(isBoot);
     });
 }

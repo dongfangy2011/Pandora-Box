@@ -6,6 +6,7 @@ import {useI18n} from "vue-i18n";
 import createApi from "@/api";
 import {pError} from "@/util/pLoad";
 import {useMenuStore} from "@/store/menuStore";
+import {useSettingStore} from "@/store/settingStore";
 
 // 获取当前 Vue 实例的 proxy 对象
 const {proxy} = getCurrentInstance()!;
@@ -14,6 +15,7 @@ const api = createApi(proxy);
 const {t} = useI18n()
 const homeStore = useHomeStore()
 const menuStore = useMenuStore()
+const settingStore = useSettingStore()
 
 // 预计算常量，减少重复运算
 const dayInMs = 1000 * 60 * 60 * 24;
@@ -191,7 +193,7 @@ onMounted(async () => {
           <li><strong>{{ $t('home.system.runtime') }} : </strong>
             {{ time }}
           </li>
-          <li><strong>{{ $t('home.system.startup') }} : </strong> {{ $t('off') }}</li>
+          <li><strong>{{ $t('home.system.startup') }} : </strong> {{ settingStore.startup ? $t('on') : $t('off') }}</li>
           <li><strong>{{ $t('home.system.admin') }} : </strong> {{ $t(admin) }}</li>
           <li><strong>{{ $t('home.system.port') }} : </strong>
             {{ port }}

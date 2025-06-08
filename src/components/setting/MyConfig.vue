@@ -12,6 +12,7 @@ import {changeMenu} from "@/util/menu";
 import {useRouter} from "vue-router";
 import {pUpdateMihomo} from "@/util/mihomo";
 import {useMenuStore} from "@/store/menuStore";
+import {Events} from "@/runtime";
 
 // 获取当前 Vue 实例的 proxy 对象 和 api
 const {proxy} = getCurrentInstance()!;
@@ -44,6 +45,14 @@ watch(() => settingStore.ipv6, (newValue) => {
     // 同步 mihomo 配置
     pUpdateMihomo(menuStore, settingStore, api)
   });
+});
+
+// 开机自启
+watch(() => settingStore.startup, (newValue) => {
+  // 更新配置
+  Events.Emit({name: "boot", data: newValue});
+  // 同步 mihomo 配置
+  pUpdateMihomo(menuStore, settingStore, api)
 });
 
 // 打开配置目录
@@ -136,14 +145,13 @@ function checkUpdate() {
         </div>
         <hr/>
         <ul class="info-list">
-          <!--          <li>-->
-          <!--            <strong>{{ $t('setting.px.startup') }} :</strong>-->
-          <!--            <el-switch-->
-          <!--                disabled-->
-          <!--                v-model="settingStore.startup"-->
-          <!--                class="set-switch"-->
-          <!--            />-->
-          <!--          </li>-->
+          <li>
+            <strong>{{ $t('setting.px.startup') }} :</strong>
+            <el-switch
+                v-model="settingStore.startup"
+                class="set-switch"
+            />
+          </li>
           <li>
             <strong>{{ $t('setting.px.auth') }} :</strong>
             <el-switch

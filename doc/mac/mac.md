@@ -16,9 +16,12 @@
 # 4、提示 “px 需要接入网络连接”, 点击允许
 <img src="net.png" width="300"><br>
 
-# 5、提示 软件损坏，解决办法
+# 5、设置开机自启时，提示 “需要控制”, 点击好
+<img src="boot.png" width="300"><br>
+
+# 6、提示 软件损坏，解决办法
 打开终端，输入以下命令，后面是app的具体路径，不知道？可以直接将app拖入终端即可看到路径
 
 ```shell
-xattr -rd com.apple.quarantine Pandora-Box.app
+xattr -rd com.apple.quarantine /Applications/Pandora-Box.app
 ```

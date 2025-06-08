@@ -3,6 +3,7 @@
 import {app, BrowserWindow, ipcMain, Menu, nativeImage, Tray} from 'electron';
 import path from "node:path";
 import {storeSet} from "./store";
+import {disableAutoLaunch, enableAutoLaunch} from "./launch";
 
 // 是否在开发模式
 const isDev = !app.isPackaged;
@@ -266,7 +267,7 @@ onWindow("tun", function (value) {
 })
 onWindow("profiles", function (profiles) {
     const key = 'tray.profiles'
-    const pList = []
+    const pList: any[] = []
     for (let profile of profiles) {
         pList.push({
             label: profile.title,
@@ -293,6 +294,15 @@ onWindow("max", function () {
 })
 onWindow("min", function () {
     mainWindow.minimize()
+})
+
+// 开机自启
+onWindow("boot", function (value) {
+    if (value) {
+        return enableAutoLaunch()
+    } else {
+        return disableAutoLaunch()
+    }
 })
 
 

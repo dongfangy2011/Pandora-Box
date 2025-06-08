@@ -53,6 +53,7 @@
     "@intlify/unplugin-vue-i18n": "^6.0.8",
     "ace-builds": "^1.40.1",
     "apexcharts": "^4.7.0",
+    "auto-launch": "^5.0.6",
     "axios": "^1.8.4",
     "chroma-js": "^3.1.2",
     "colorthief": "^2.6.0",

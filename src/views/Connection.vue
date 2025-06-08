@@ -139,7 +139,7 @@ function closeAll() {
               </template>
               <div class="od">
                 <span class="ot">{{ $t('connections.host') }} : </span>
-                {{ item.metadata.host }}:{{ item.metadata.destinationPort }}
+                {{ fHost(item.metadata) }}
               </div>
               <div class="od">
                 <span class="ot">{{ $t('connections.download') }} : </span>

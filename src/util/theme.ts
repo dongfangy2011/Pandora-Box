@@ -59,6 +59,11 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
         .brighten(0.2)
         .alpha(0.9);
 
+    // 🎯 避免偏亮黄色按钮色（提升对比度、偏移色相）
+    if (h > 40 && h < 65 && l > 0.7) {
+        selectedColor = selectedColor.darken(0.5).set("hsl.h", (h + 20) % 360);
+    }
+
     // ========= 🔎 对比度保障 =========
     const getContrast = (rgb1: number[], rgb2: number[]): number => {
         const luminance = (rgb: number[]) => {
@@ -75,11 +80,13 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
         return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
     };
 
-    let contrast = getContrast(selectedColor.rgb(), textRGB);
-    if (contrast < 3) {
+    const MIN_CONTRAST = 4.5;
+    let attempts = 0;
+    while (getContrast(selectedColor.rgb(), textRGB) < MIN_CONTRAST && attempts < 5) {
         selectedColor = useWhiteText
-            ? selectedColor.darken(0.8)
-            : selectedColor.brighten(0.8);
+            ? selectedColor.darken(0.2)
+            : selectedColor.brighten(0.2);
+        attempts++;
     }
 
     const contrastWithBase = getContrast(selectedColor.rgb(), baseColor.rgb());
@@ -103,18 +110,54 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
         .css();
 
     // ========= 🎯 副标题颜色（对比增强 + 可见度控制） =========
+    const MIN_SUBTITLE_CONTRAST_TEXT = 3.2;
+    const MIN_SUBTITLE_CONTRAST_BG = 4.0;
+
     let subtitleBase = useWhiteText
         ? selectedColor.brighten(1.2)
-        : selectedColor.darken(0.8);
+        : selectedColor.darken(1.0);
 
-    if (getContrast(subtitleBase.rgb(), textRGB) < 2.8) {
-        subtitleBase = useWhiteText
-            ? subtitleBase.brighten(0.5)
-            : subtitleBase.darken(0.5);
+    let attempt = 0;
+    while (attempt < 6) {
+        const contrastText = getContrast(subtitleBase.rgb(), textRGB);
+        const contrastBg = getContrast(subtitleBase.rgb(), baseColor.rgb());
+
+        if (contrastText >= MIN_SUBTITLE_CONTRAST_TEXT && contrastBg >= MIN_SUBTITLE_CONTRAST_BG) {
+            break; // 够了，退出循环
+        }
+
+        // 文字白，背景暗时，副标题颜色尽量更亮更饱和
+        if (useWhiteText) {
+            subtitleBase = subtitleBase.brighten(0.3).saturate(0.2);
+        } else {
+            // 文字黑，背景亮时，副标题颜色尽量更暗更饱和
+            subtitleBase = subtitleBase.darken(0.3).saturate(0.2);
+        }
+        attempt++;
     }
 
-    const subtitleColor = subtitleBase.alpha(0.9).css();
+    // 保证不透明度
+    const subtitleColor = subtitleBase.alpha(0.95).css();
 
+
+    // -------- 计算 body-blur-color --------
+    let bodyBlurColor: string;
+    if (useWhiteText) {
+        // 暗背景，文字用白色 → body blur 用透明黑色系
+        bodyBlurColor = chroma("black")
+            .alpha(0.25)                 // 透明度可调
+            .mix(baseColor, 0.15)        // 轻微融合主色
+            .desaturate(0.2)
+            .css();
+    } else {
+        // 亮背景，文字用黑色 → body blur 用透明浅灰色系
+        bodyBlurColor = chroma("white")
+            .alpha(0.15)
+            .mix(baseColor, 0.2)
+            .darken(0.4)
+            .desaturate(0.2)
+            .css();
+    }
 
     // ========= ✅ 应用主题色 =========
     setCSSVariables({
@@ -123,6 +166,7 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
         "left-item-selected-bg": selectedColor.css(),
         "blend-color": backgroundBlendColor,
         "right-bg-color": backgroundRightColor,
+        "body-blur-color": bodyBlurColor,
     });
 
     return useWhiteText;
@@ -131,8 +175,8 @@ export const changeTheme = (img: HTMLImageElement): boolean => {
 
 // ======================== 背景处理工具 ======================== //
 
-const defaultBackground = "url('/images/quang.jpg')";
-const IMAGE_LOAD_TIMEOUT = 10000; // 10秒超时
+const defaultBackground = "url('/images/default.jpg')";
+const IMAGE_LOAD_TIMEOUT = 15000; // 15秒超时
 
 const extractImageUrl = (style: string): string | null => {
     const match = style.match(/^url\(["']?(.*?)["']?\)$/);

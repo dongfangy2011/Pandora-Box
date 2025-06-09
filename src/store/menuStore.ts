@@ -11,7 +11,7 @@ export const useMenuStore = defineStore('menu', {
         tun: false,
         language: 'zh',
         ruleMenu: 'Now',
-        background: 'url("/images/quang.jpg")',
+        background: 'url("/images/default.jpg")',
         useWhite: true
     }),
     actions: {

@@ -70,6 +70,7 @@ watch(() => menuStore.background, (nextBackground) => {
   transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
   background-color: var(--blend-color);
   background-blend-mode: multiply;
+  position: relative;
 }
 
 .cBody::before {
@@ -80,8 +81,8 @@ watch(() => menuStore.background, (nextBackground) => {
   width: 100%;
   height: 100%;
   background-color: var(--body-blur-color);
+  z-index: 0;
 }
-
 
 .left {
   padding-right: 18px;

@@ -1,15 +1,22 @@
 [
   {
     "id": "default",
-    "bg": "url('/images/quang.jpg')"
+    "bg": "url('/images/default.jpg')"
   },
   {
     "id": "harbor",
     "bg": "url('/images/harbor.jpg')"
   },
   {
-    "id": "cuke",
-    "bg": "url('/images/gua.jpg')"
+    "id": "gradient",
+    "bg": [
+      "url('/images/gradient1.png')",
+      "url('/images/gradient2.png')",
+      "url('/images/gradient3.png')",
+      "url('/images/gradient4.png')",
+      "url('/images/gradient5.png')",
+      "url('/images/gradient6.png')"
+    ]
   },
   {
     "id": "sea",
@@ -26,6 +33,7 @@
       "url('/images/woman3.jpg')",
       "url('/images/woman4.jpg')",
       "url('/images/woman5.jpg')",
+      "url('/images/woman6.png')",
       "url('https://cdn.seovx.com/?mom=302')",
       "url('https://cdn.seovx.com/ha/?mom=302')"
     ]
@@ -35,7 +43,8 @@
     "bg": [
       "url('/images/star1.jpg')",
       "url('/images/star2.jpg')",
-      "url('/images/star3.jpg')"
+      "url('/images/star3.jpg')",
+      "url('/images/star4.jpg')"
     ]
   },
   {

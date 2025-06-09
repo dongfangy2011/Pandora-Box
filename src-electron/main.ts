@@ -5,7 +5,7 @@ import {doQuit, initTray, showWindow} from "./tray";
 import {startBackend} from "./admin";
 import log from './log';
 import {initStore, storeGet} from "./store";
-import {isBootAutoLaunch, waitForNetworkReady} from "./launch";
+import {isBootAutoLaunch, updateAutoLaunchRegistration, waitForNetworkReady} from "./launch";
 
 // 是否在开发模式
 const isDev = !app.isPackaged;
@@ -152,5 +152,8 @@ if (!gotTheLock) {
         // 启动UI
         log.info('准备就绪，启动窗口，port=', storeInfo.port(), ' secret=', storeInfo.secret());
         createWindow(isBoot);
+
+        // 更新开机自启路径
+        await updateAutoLaunchRegistration()
     });
 }

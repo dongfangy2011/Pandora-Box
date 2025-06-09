@@ -34,6 +34,38 @@ It is designed for both casual and advanced users to easily manage and convert p
 
 ---
 
+## 🛠 Development ｜ 开发 ｜ Разработка
+
+If you want to contribute or build Pandora-Box locally, refer to the resources below:  
+如果你想参与开发或构建 Pandora-Box，可以参考以下资源：  
+Если вы хотите принять участие в разработке или собрать Pandora-Box локально, воспользуйтесь следующими ресурсами:
+
+### 🔧 Prerequisites | 前置依赖 | Предварительные требования
+
+- [Node.js](https://nodejs.org/) ≥ 18 (for building UI components or tooling)
+- [Go](https://go.dev/) ≥ 1.24 (for integration with Mihomo or backend modules)
+
+### 🧪 Build Instructions | 构建指南 | Инструкции по сборке
+
+```bash
+# Install dependencies
+npm install
+cd src-go
+go mod tidy
+
+# Build px backend
+CGO_ENABLED=0 go build -tags=with_gvisor -trimpath -ldflags "-X github.com/snakem982/pandora-box/api.Version=v-test" -o px(.exe)
+cd ..
+
+# Build desktop app
+npm run package
+
+# Run in dev mode
+npm run start
+```
+
+---
+
 ## 🌐 Language ｜ 语言选择 ｜ Выбор языка
 
 - 🇨🇳 [查看中文文档](doc/README.zh-CN.md)
@@ -46,12 +78,11 @@ It is designed for both casual and advanced users to easily manage and convert p
 
 - ✅ [Project Issues](https://github.com/snakem982/Pandora-Box/issues)
 - 📄 [License (GPL-3.0)](./LICENSE)
-- ❤️ Powered by [Mihomo](https://github.com/MetaCubeX/mihomo)
-
+- ❤️ Powered by [DartNode](https://dartnode.com)  
   [![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
 
 ---
 
 📝 This README was generated with the assistance of AI and reviewed by the developer.  
 📝 本文档内容由 AI 辅助生成，并由开发者校对。  
-📝 Этот README создан при поддержке ИИ и проверен разработчиком.  
+📝 Этот README создан при поддержке ИИ и проверен разработчиком.

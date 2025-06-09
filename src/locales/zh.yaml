@@ -108,7 +108,7 @@ setting:
     bind-error: 错误的地址
   px:
     auth: 授权提示
-    startup: 开机启动
+    startup: 开机自启
     dir: 配置目录
     open: 打开
     import: 导入

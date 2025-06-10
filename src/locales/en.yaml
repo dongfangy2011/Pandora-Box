@@ -203,8 +203,6 @@ dns:
 
 bg:
   default: Default
-  azure: Azure
-  dog: Dog
   harbor: Harbor
   gradient: Gradient
   sea: Serene

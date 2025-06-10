@@ -203,8 +203,6 @@ dns:
 
 bg:
   default: По умолчанию
-  azure: Лазурный
-  dog: Собака
   harbor: Гавань
   gradient: Градиент
   sea: Безмятежный

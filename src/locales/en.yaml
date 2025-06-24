@@ -145,6 +145,7 @@ profiles:
     title: Title
     url: URL
     update: Update Interval (hour)
+    template: Rule Grouping Template
     title-tip: The title cannot be empty
     url-tip: The URL cannot be empty
     url-error: Wrong URL format
@@ -169,6 +170,7 @@ rule:
   group:
     title: Unified rule grouping
     model: Choose a template
+    m0: Unused
     m1: Default
     m2: Multi-national
     m3: Multi-full

@@ -181,6 +181,13 @@ rule:
     switch:
       ing: 切换中。。。
       success: 切换成功
+    add:
+      title: 模版标题
+      placeholder: 标题添加后不可修改
+      tip: 模版内容不能为空
+      success: 添加成功
+    delete:
+      success: 删除成功
   ignore:
     title: 忽略这些域名
     tip: 按行分割

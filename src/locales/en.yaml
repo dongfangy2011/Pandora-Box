@@ -181,6 +181,13 @@ rule:
     switch:
       ing: Switching...
       success: Switch success
+    add:
+      title: Template Title
+      placeholder: Title cannot be changed after adding
+      tip: The template content cannot be empty
+      success: Add success
+    delete:
+      success: Delete success
   ignore:
     title: Ignore these domains
     tip: Split by row

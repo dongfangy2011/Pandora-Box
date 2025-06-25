@@ -4,7 +4,7 @@ import createApi from "@/api";
 import {pError, pLoad, pSuccess, pWarning} from "@/util/pLoad";
 import {useProxiesStore} from "@/store/proxiesStore";
 import {useMenuStore} from "@/store/menuStore";
-import {isHttpOrHttps, prettyBytes} from "@/util/format";
+import {getTemplateTitle, isHttpOrHttps, prettyBytes} from "@/util/format";
 import {useI18n} from "vue-i18n";
 import {Browser, Clipboard, Events} from "@/runtime"
 import {useWebStore} from "@/store/webStore";
@@ -355,16 +355,6 @@ watch(() => webStore.dProfile, async (pList) => {
   }
 })
 
-const innerTemplate = ['m0', 'm1', 'm2', 'm3']
-
-function getTitle(title: string) {
-  if (innerTemplate.indexOf(title) > -1) {
-    return t("rule.group." + title)
-  }
-
-  return title
-}
-
 </script>
 
 <template>
@@ -594,7 +584,7 @@ function getTitle(title: string) {
           <el-option
               v-for="item in tList"
               :key="item.id"
-              :label="getTitle(item.title)"
+              :label="getTemplateTitle(t,item.title)"
               :value="item.id"
           />
         </el-select>

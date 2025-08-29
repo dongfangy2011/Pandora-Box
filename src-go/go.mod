@@ -5,7 +5,7 @@ go 1.24.0
 toolchain go1.24.4
 
 require (
-	github.com/go-chi/chi/v5 v5.2.2
+	github.com/go-chi/chi/v5 v5.2.3
 	github.com/go-chi/render v1.0.3
 	github.com/go-co-op/gocron v1.37.0
 	github.com/gobwas/ws v1.4.0
@@ -60,22 +60,22 @@ require (
 	github.com/metacubex/chacha v0.1.5 // indirect
 	github.com/metacubex/fswatch v0.1.1 // indirect
 	github.com/metacubex/gopacket v1.1.20-0.20230608035415-7e2f98a3e759 // indirect
-	github.com/metacubex/gvisor v0.0.0-20250324165734-5857f47bd43b // indirect
+	github.com/metacubex/gvisor v0.0.0-20250826025146-23043f716a2c // indirect
 	github.com/metacubex/nftables v0.0.0-20250708020511-be959b9e8902 // indirect
 	github.com/metacubex/quic-go v0.54.1-0.20250730114134-a1ae705fe295 // indirect
 	github.com/metacubex/randv2 v0.2.0 // indirect
 	github.com/metacubex/restls-client-go v0.1.7 // indirect
-	github.com/metacubex/sing v0.5.5 // indirect
+	github.com/metacubex/sing v0.5.6-0.20250826072929-f69b475e017b // indirect
 	github.com/metacubex/sing-mux v0.3.3-0.20250813083925-d7c9aeaeeaac // indirect
 	github.com/metacubex/sing-quic v0.0.0-20250718154553-1b193bec4cbb // indirect
 	github.com/metacubex/sing-shadowsocks v0.2.12 // indirect
 	github.com/metacubex/sing-shadowsocks2 v0.2.6 // indirect
 	github.com/metacubex/sing-shadowtls v0.0.0-20250503063515-5d9f966d17a2 // indirect
-	github.com/metacubex/sing-tun v0.4.7 // indirect
-	github.com/metacubex/sing-vmess v0.2.4-0.20250822020810-4856053566f0 // indirect
+	github.com/metacubex/sing-tun v0.4.8-0.20250827085914-fc5681b9fc9f // indirect
+	github.com/metacubex/sing-vmess v0.2.4-0.20250829012208-7981a8548c79 // indirect
 	github.com/metacubex/sing-wireguard v0.0.0-20250503063753-2dc62acc626f // indirect
 	github.com/metacubex/smux v0.0.0-20250503055512-501391591dee // indirect
-	github.com/metacubex/tfo-go v0.0.0-20250813102221-315ef9a38c2c // indirect
+	github.com/metacubex/tfo-go v0.0.0-20250827083229-aa432b865617 // indirect
 	github.com/metacubex/utls v1.8.1-0.20250823120917-12f5ba126142 // indirect
 	github.com/metacubex/wireguard-go v0.0.0-20250820062549-a6cecdd7f57f // indirect
 	github.com/miekg/dns v1.1.68 // indirect
@@ -117,4 +117,4 @@ require (
 	google.golang.org/protobuf v1.36.8 // indirect
 )
 
-replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.1.3-moshen
+replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.1.4-moshen

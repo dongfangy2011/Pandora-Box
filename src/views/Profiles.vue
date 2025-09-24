@@ -353,13 +353,39 @@ function sendOrder(data: any) {
   }
 }
 
+function handleProfilesImported(event: Event) {
+  const customEvent = event as CustomEvent;
+  const detail = customEvent.detail;
+  if (!detail || !Array.isArray(detail.profiles)) {
+    return;
+  }
+
+  let added = false;
+  for (const item of detail.profiles) {
+    if (!item) {
+      continue;
+    }
+    const exists = profiles.some(profile => profile['id'] === item['id']);
+    if (!exists) {
+      profiles.push(item);
+      added = true;
+    }
+  }
+
+  if (added) {
+    sendOrder(profiles);
+  }
+}
+
 // 路由切换前关闭 WebSocket
 onBeforeRouteLeave(() => {
   wsOrder.close();
 });
-onBeforeUnmount(() => {
-  wsOrder.close();
-})
+
+// This is now handled in the onMounted section above
+// onBeforeUnmount(() => {
+//   wsOrder.close();
+// })
 
 // Template列表
 let tList = reactive([]);
@@ -375,6 +401,12 @@ onMounted(async () => {
     title: 'm0',
     id: 'm0'
   });
+  window.addEventListener('deeplink-profile-imported', handleProfilesImported as EventListener);
+})
+
+onBeforeUnmount(() => {
+  wsOrder.close();
+  window.removeEventListener('deeplink-profile-imported', handleProfilesImported as EventListener);
 })
 
 watch(() => webStore.dProfile, async (pList) => {

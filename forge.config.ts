@@ -35,45 +35,7 @@ const config: ForgeConfig = {
             icon: 'build/appicon.ico',
             ui: {
                 chooseDirectory: true,
-            },
-            upgradeCode: 'c1d377b2-2c61-4c5e-8773-8e3c703b8b41',
-            registry: [
-                {
-                    key: 'HKEY_CLASSES_ROOT\\pandora-box',
-                    values: [
-                        {
-                            name: '',
-                            type: 'REG_SZ',
-                            value: 'URL:Pandora-Box Protocol'
-                        },
-                        {
-                            name: 'URL Protocol',
-                            type: 'REG_SZ',
-                            value: ''
-                        }
-                    ]
-                },
-                {
-                    key: 'HKEY_CLASSES_ROOT\\pandora-box\\DefaultIcon',
-                    values: [
-                        {
-                            name: '',
-                            type: 'REG_SZ',
-                            value: '[APPLICATIONROOTDIRECTORY]Pandora-Box.exe,0'
-                        }
-                    ]
-                },
-                {
-                    key: 'HKEY_CLASSES_ROOT\\pandora-box\\shell\\open\\command',
-                    values: [
-                        {
-                            name: '',
-                            type: 'REG_SZ',
-                            value: '"[APPLICATIONROOTDIRECTORY]Pandora-Box.exe" "%1"'
-                        }
-                    ]
-                }
-            ]
+            }
         }),
         new MakerDMG({
             icon: 'build/appicon.icns',

@@ -112,4 +112,4 @@ require (
 	google.golang.org/protobuf v1.36.10 // indirect
 )
 
-replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.1.7-moshen
+replace github.com/metacubex/mihomo => github.com/snakem982/mihomo v1.1.8-moshen

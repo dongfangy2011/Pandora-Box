@@ -28,6 +28,14 @@ It is designed for both casual and advanced users to easily manage and convert p
 
 ---
 
+## 🌐 Language ｜ 语言选择 ｜ Выбор языка
+
+- 🇨🇳 [查看中文文档](doc/README.zh-CN.md)
+- 🇺🇸 [View English Documentation](doc/README.en.md)
+- 🇷🇺 [Просмотр русской документации](doc/README.ru.md)
+
+---
+
 ## 📥 Get Started ｜ 快速开始 ｜ Начало работы
 
 👉 [Download the Latest Release / 下载最新版本 / Скачать последнюю версию](https://github.com/snakem982/Pandora-Box/releases)
@@ -63,14 +71,6 @@ npm run package
 # Run in dev mode
 npm run start
 ```
-
----
-
-## 🌐 Language ｜ 语言选择 ｜ Выбор языка
-
-- 🇨🇳 [查看中文文档](doc/README.zh-CN.md)
-- 🇺🇸 [View English Documentation](doc/README.en.md)
-- 🇷🇺 [Просмотр русской документации](doc/README.ru.md)
 
 ---
 
